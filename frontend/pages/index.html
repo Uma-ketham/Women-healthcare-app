@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HerHealth | Track. Understand. Take Charge.</title>
+
+  <style>
+    :root {
+      --pink: #e83e78;
+      --pink-dark: #8c174f;
+      --pink-light: #fff1f5;
+      --pink-pale: #fff8fa;
+      --text: #293954;
+      --muted: #71809a;
+      --border: #f2e5eb;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #fffdfd;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    button, a, input, select, textarea { font: inherit; }
+    button:focus-visible, a:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline: 3px solid #e83e78;
+      outline-offset: 3px;
+    }
+    .app { display: flex; min-height: 100vh; }
+
+    /* LEFT SIDEBAR — Stage 1 design preserved */
+    .sidebar {
+      width: 245px;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, #fff3f7, #fffafb);
+      border-right: 1px solid var(--border);
+      padding: 28px 17px;
+      display: flex;
+      flex-direction: column;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 11px;
+      padding: 0 9px; margin-bottom: 38px;
+    }
+    .brand-icon { font-size: 36px; color: var(--pink); }
+    .brand h2 { color: var(--pink); font-size: 23px; line-height: 1.2; }
+    .brand p { font-size: 10px; letter-spacing: 1px; color: var(--pink-dark); }
+    .nav-menu { display: flex; flex-direction: column; gap: 8px; }
+    .nav-link {
+      display: flex; align-items: center; gap: 13px;
+      padding: 12px 13px; border-radius: 13px; text-decoration: none;
+      color: #40506b; font-size: 14px;
+      transition: background 0.25s, color 0.25s, transform 0.25s;
+    }
+    .nav-link .icon { width: 22px; font-size: 19px; text-align: center; }
+    .nav-link:hover { background: #ffe4ed; color: var(--pink-dark); transform: translateX(4px); }
+    .nav-link.active { background: #f9dfe9; color: #b51f5a; font-weight: 600; }
+    .sidebar-footer { margin-top: auto; padding: 30px 10px 5px; color: #d77ba0; font-size: 15px; line-height: 1.7; }
+
+    /* MAIN AREA — Stage 1 design preserved */
+    .main { flex: 1; min-width: 0; padding: 0 34px 30px; }
+    .topbar {
+      min-height: 76px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+      border-bottom: 1px solid #f6edf1; margin-bottom: 24px;
+    }
+    .topbar-label { color: var(--pink-dark); font-size: 14px; font-weight: 600; }
+    .topbar-right { color: var(--muted); font-size: 13px; }
+
+    /* HERO BANNER — Stage 1 design preserved */
+    .hero {
+      position: relative; overflow: hidden; display: flex;
+      align-items: center; justify-content: space-between; gap: 25px;
+      min-height: 280px; padding: 34px 38px; border-radius: 20px;
+      background: radial-gradient(circle at 80% 35%, #ffe0eb 0, transparent 30%),
+                  linear-gradient(110deg, #fff0f5, #fff9fb);
+      border: 1px solid #fff0f5;
+    }
+    .hero-content { max-width: 570px; position: relative; z-index: 1; }
+    .eyebrow { color: #bc3267; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+    .hero h1 { color: var(--pink-dark); font-size: clamp(30px, 3vw, 43px); line-height: 1.2; margin-bottom: 9px; }
+    .tagline { color: var(--pink); font-size: 17px; font-weight: 600; margin-bottom: 13px; }
+    .hero-description { max-width: 450px; color: #52617c; font-size: 15px; margin-bottom: 22px; }
+    .primary-btn {
+      display: inline-flex; align-items: center; gap: 12px; padding: 12px 23px;
+      border: none; border-radius: 30px; background: var(--pink); color: white;
+      text-decoration: none; font-weight: 600; cursor: pointer;
+      box-shadow: 0 5px 14px #e83e7825; transition: transform 0.25s, background 0.25s;
+    }
+    .primary-btn:hover { background: #ca2862; transform: translateY(-3px); }
+    .hero-art {
+      width: 235px; height: 235px; flex-shrink: 0; border-radius: 50%;
+      background: linear-gradient(145deg, #fbd7e5, #fff4f8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 100px; margin-right: 4%;
+    }
+
+    /* FEATURE CARDS — Stage 1 design preserved */
+    .section-title { color: var(--pink-dark); font-size: 20px; margin: 30px 0 16px; }
+    .features { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .feature-card {
+      padding: 22px 18px; border: 1px solid transparent; border-radius: 17px;
+      min-height: 185px; transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px #74304c10; border-color: var(--border); }
+    .feature-card:nth-child(1) { background: #fff1f5; }
+    .feature-card:nth-child(2) { background: #f7f2ff; }
+    .feature-card:nth-child(3) { background: #effaf7; }
+    .feature-card:nth-child(4) { background: #f0f7ff; }
+    .feature-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: white; font-size: 23px; margin-bottom: 13px; }
+    .feature-card h3 { font-size: 15px; margin-bottom: 7px; }
+    .feature-card p { color: var(--muted); font-size: 13px; }
+
+    /* LOWER PANELS — Stage 1 design preserved */
+    .bottom-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 20px; margin-top: 24px; }
+    .panel { border: 1px solid var(--border); border-radius: 18px; padding: 24px; background: white; }
+    .panel h2 { font-size: 18px; color: var(--pink-dark); margin-bottom: 13px; }
+    .welcome-note { background: var(--pink-pale); border-radius: 13px; padding: 18px; color: #586680; font-size: 14px; }
+    .welcome-note strong { color: #a52359; }
+    .privacy { margin-top: 17px; padding: 16px; border-radius: 13px; background: #f0faf5; color: #326c54; font-size: 13px; }
+    .privacy h3, .disclaimer h3 { font-size: 14px; margin-bottom: 5px; }
+    .disclaimer { margin-top: 14px; padding: 16px; border-radius: 13px; background: #fff6eb; color: #79552f; font-size: 13px; }
+    .footer { text-align: center; color: #8a91a2; font-size: 12px; padding: 26px 8px 5px; }
+
+    /* Stage 2 page styling uses the same existing design tokens and typography */
+    .stage2-page { display: none; }
+    .stage2-page.active-page { display: block; }
+    .page-heading { color: var(--pink-dark); font-size: 26px; line-height: 1.25; margin: 4px 0 6px; }
+    .page-intro { color: var(--muted); font-size: 14px; margin-bottom: 22px; }
+    .page-section { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 22px; margin-bottom: 20px; }
+    .page-section h2 { color: var(--pink-dark); font-size: 18px; margin-bottom: 14px; }
+    .page-section h3 { color: var(--pink-dark); font-size: 15px; margin-bottom: 8px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 13px; font-weight: 600; color: #40506b; }
+    .field input, .field select, .field textarea {
+      width: 100%; min-width: 0; padding: 10px 12px;
+      border: 1px solid var(--border); border-radius: 10px;
+      background: #fffdfd; color: var(--text);
+    }
+    .field textarea { min-height: 90px; resize: vertical; }
+    .field-help { color: var(--muted); font-size: 12px; }
+    .action-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; }
+    .action-btn {
+      border: 1px solid var(--border); border-radius: 25px; padding: 9px 16px;
+      background: var(--pink-light); color: var(--pink-dark); cursor: pointer; font-weight: 600;
+    }
+    .action-btn.primary { background: var(--pink); color: #fff; border-color: var(--pink); }
+    .action-btn:hover { filter: brightness(.98); }
+    .action-btn.danger { background: #fff6f6; color: #a12642; border-color: #f0d8df; }
+    .empty-state { padding: 22px; border: 1px dashed #e9cbd7; border-radius: 13px; background: var(--pink-pale); color: var(--muted); font-size: 14px; text-align: center; }
+    .notice { padding: 13px 15px; border-radius: 12px; background: var(--pink-pale); color: #586680; font-size: 13px; margin-bottom: 15px; }
+    .record-list { display: grid; gap: 12px; }
+    .record-card { border: 1px solid var(--border); border-radius: 13px; padding: 15px; background: #fffdfd; }
+    .record-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+    .record-card h3 { margin-bottom: 4px; }
+    .record-meta { color: var(--muted); font-size: 13px; white-space: pre-line; }
+    .small-actions { display: flex; gap: 7px; flex-wrap: wrap; }
+    .small-actions button { padding: 5px 10px; font-size: 12px; }
+    .calendar-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 15px; }
+    .calendar-toolbar h2 { margin: 0; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+    .calendar-weekday { text-align: center; font-size: 12px; font-weight: 700; color: var(--muted); padding: 5px 0; }
+    .calendar-day {
+      min-height: 48px; border: 1px solid var(--border); border-radius: 9px;
+      background: #fff; color: var(--text); cursor: pointer; padding: 5px;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 3px;
+    }
+    .calendar-day:hover { background: var(--pink-light); }
+    .calendar-day.muted-day { color: #b3b9c4; background: #fffdfd; }
+    .calendar-day.period-day { background: #f9dfe9; border-color: #e9a9c0; }
+    .calendar-day.selected-day { outline: 2px solid var(--pink); outline-offset: 1px; }
+    .day-dot { color: var(--pink-dark); font-size: 11px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+    .summary-card { background: var(--pink-pale); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+    .summary-card span { color: var(--muted); font-size: 12px; display: block; }
+    .summary-card strong { color: var(--pink-dark); font-size: 22px; display: block; margin-top: 3px; }
+    .chart-wrap { min-height: 180px; }
+    .chart-wrap svg { width: 100%; height: auto; display: block; }
+    .chart-caption { color: var(--muted); font-size: 12px; margin-top: 7px; }
+    .report-preview { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px; white-space: normal; }
+    .report-preview h2, .report-preview h3 { color: var(--pink-dark); margin: 12px 0 6px; }
+    .report-preview p, .report-preview li { font-size: 13px; color: #52617c; }
+    .report-preview ul { margin-left: 20px; }
+    .community-post { border: 1px solid var(--border); border-radius: 13px; padding: 15px; margin-bottom: 12px; }
+    .community-post .post-date { color: var(--muted); font-size: 11px; }
+    .muted { color: var(--muted); }
+    .hidden { display: none !important; }
+
+    @media (max-width: 1100px) {
+      .sidebar { width: 215px; }
+      .main { padding: 0 22px 25px; }
+      .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-art { width: 170px; height: 170px; font-size: 75px; margin-right: 0; }
+    }
+    @media (max-width: 720px) {
+      .app { flex-direction: column; }
+      .sidebar { width: 100%; padding: 15px; border-right: none; border-bottom: 1px solid var(--border); }
+      .brand { margin-bottom: 15px; }
+      .nav-menu { flex-direction: row; overflow-x: auto; padding-bottom: 5px; }
+      .nav-link { flex-shrink: 0; padding: 9px 12px; }
+      .sidebar-footer { display: none; }
+      .main { padding: 0 15px 20px; }
+      .topbar { min-height: 58px; margin-bottom: 15px; }
+      .hero { padding: 25px 20px; }
+      .hero-art { display: none; }
+      .features { gap: 12px; }
+      .feature-card { padding: 17px 13px; }
+      .bottom-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .calendar-grid { gap: 3px; }
+      .calendar-day { min-height: 38px; font-size: 12px; padding: 3px; }
+      .page-section { padding: 16px; }
+    }
+    @media (max-width: 390px) {
+      .features { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .sidebar, .topbar, .no-print, #home-view, .page-intro { display: none !important; }
+      .app, .main { display: block; padding: 0; }
+      .stage2-page { display: none !important; }
+      #consultation-report-page.active-page { display: block !important; }
+      .page-section, .report-preview { border: none; padding: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">❀</div>
+        <div>
+          <h2>HerHealth</h2>
+          <p>Track · Understand · Take Charge</p>
+        </div>
+      </div>
+
+      <nav class="nav-menu" aria-label="Main navigation">
+        <a class="nav-link active" href="#home" data-page="home">
+          <span class="icon">⌂</span> Home
+        </a>
+        <a class="nav-link" href="#profile" data-page="profile">
+          <span class="icon">♡</span> Profile
+        </a>
+        <a class="nav-link" href="#period-tracker" data-page="period-tracker">
+          <span class="icon">▦</span> Period Tracker
+        </a>
+        <a class="nav-link" href="#daily-symptoms" data-page="daily-symptoms">
+          <span class="icon">✧</span> Daily Symptoms
+        </a>
+        <a class="nav-link" href="#dashboard" data-page="dashboard">
+          <span class="icon">♡</span> Health Dashboard
+        </a>
+        <a class="nav-link" href="#consultation-report" data-page="consultation-report">
+          <span class="icon">▤</span> Consultation Report
+        </a>
+        <a class="nav-link" href="#resources" data-page="resources">
+          <span class="icon">▱</span> Resources
+        </a>
+        <a class="nav-link" href="#settings" data-page="settings">
+          <span class="icon">⚙</span> Settings
+        </a>
+        <a class="nav-link" href="#community" data-page="community">
+          <span class="icon">♧</span> Community
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        ♡<br />
+        Your health matters.<br />
+        Always.
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <span class="topbar-label">Your personal health space</span>
+        <span class="topbar-right">Know your health. Feel empowered. ♡</span>
+      </header>
+
+      <!-- STAGE 1 HOMEPAGE: content and structure preserved -->
+      <div id="home-view">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <p class="eyebrow">Welcome to HerHealth</p>
+            <h1 id="hero-title">
+              Your health journey<br />
+              starts here <span aria-hidden="true">♥</span>
+            </h1>
+            <p class="tagline">Track. Understand. Take Charge.</p>
+            <p class="hero-description">
+              HerHealth is a health awareness and tracking tool
+              designed to help you understand your menstrual health,
+              record symptoms, and explore reliable educational resources.
+            </p>
+            <a class="primary-btn" href="#features" id="explore-button">
+              Explore HerHealth <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="hero-art" aria-hidden="true">🌸</div>
+        </section>
+
+        <section id="features" aria-labelledby="features-title">
+          <h2 class="section-title" id="features-title">Explore Your Health</h2>
+          <div class="features">
+            <article class="feature-card" data-open-page="period-tracker">
+              <div class="feature-icon" aria-hidden="true">🌷</div>
+              <h3>Period Tracker</h3>
+              <p>Keep track of your menstrual cycle and related changes.</p>
+            </article>
+            <article class="feature-card" data-open-page="daily-symptoms">
+              <div class="feature-icon" aria-hidden="true">♡</div>
+              <h3>Daily Symptoms</h3>
+              <p>Record symptoms and notice patterns over time.</p>
+            </article>
+            <article class="feature-card" data-open-page="dashboard">
+              <div class="feature-icon" aria-hidden="true">✿</div>
+              <h3>Health Dashboard</h3>
+              <p>Explore your health information in one place.</p>
+            </article>
+            <article class="feature-card" data-open-page="resources">
+              <div class="feature-icon" aria-hidden="true">📖</div>
+              <h3>Health Resources</h3>
+              <p>Learn about menstrual health through educational content.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="bottom-grid" aria-label="Important information">
+          <div class="panel">
+            <h2>♡ Welcome to Your Health Space</h2>
+            <div class="welcome-note">
+              <strong>Track. Understand. Take Charge.</strong>
+              <p>
+                Every person's health journey is different.
+                HerHealth aims to make menstrual health awareness
+                easier to understand and personal health tracking
+                easier to manage.
+              </p>
+            </div>
+            <div class="privacy">
+              <h3>🔒 Your Privacy Matters</h3>
+              <p>
+                Your data is safe and secure with us.
+                Your health information deserves care and privacy.
+              </p>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>Important to Know</h2>
+            <div class="disclaimer">
+              <h3>⚕ Medical Disclaimer</h3>
+              <p>
+                HerHealth supports tracking and educational awareness
+                on menstrual health. It doesn't replace professional
+                medical advice.
+              </p>
+              <p>
+                Consult a qualified healthcare professional for
+                medical concerns.
+              </p>
+            </div>
+          </div>
+        </section>
+        <footer class="footer">
+          <p>HerHealth · Track. Understand. Take Charge.</p>
+          <p>Designed to support awareness, understanding, and informed choices.</p>
+        </footer>
+      </div>
+
+      <!-- PROFILE -->
+      <section class="stage2-page" id="profile-page" data-page-content="profile">
+        <h1 class="page-heading">Profile</h1>
+        <p class="page-intro">View and edit the profile details you choose to enter.</p>
+        <div class="page-section">
+          <h2>Personal Information</h2>
+          <form id="profile-form">
+            <div class="form-grid">
+              <div class="field"><label for="profile-name">Name</label><input id="profile-name" name="name" type="text" placeholder="Enter your name" /></div>
+              <div class="field"><label for="profile-age">Age</label><input id="profile-age" name="age" type="number" min="1" max="120" placeholder="Enter age" /></div>
+              <div class="field"><label for="profile-email">Email (optional)</label><input id="profile-email" name="email" type="email" placeholder="Enter email" /></div>
+              <div class="field"><label for="profile-location">Location</label><input id="profile-location" name="location" type="text" placeholder="Enter city/region" /></div>
+            </div>
+            <div class="action-row"><button class="action-btn primary" type="submit">Save Profile</button><span class="muted" id="profile-status" role="status"></span></div>
+          </form>
+        </div>
+        
+<!-- Cycle Preferences -->
+<div class="page-section">
+  <h2>Cycle Preferences</h2>
+  <p class="page-intro">Manage your cycle tracking and cycle details.</p>
+
+  <div class="form-grid">
+    <div class="field">
+      <label for="cycle-tracking">Cycle Tracking</label>
+      <select id="cycle-tracking" name="cycle-tracking">
+        <option value="">Choose an option</option>
+        <option value="enabled">Enable tracking</option>
+        <option value="disabled">Disable tracking</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="last-period">Last Period Start Date (optional)</label>
+      <input id="last-period" name="last-period" type="date" />
+    </div>
+
+    <div class="field">
+      <label for="cycle-length">Average Cycle Length (days)</label>
+      <input id="cycle-length" name="cycle-length"
+             type="number" min="1" max="90"
+             placeholder="e.g. 28" />
+    </div>
+
+    <div class="field">
+      <label for="period-length">Average Period Duration (days)</label>
+      <input id="period-length" name="period-length"
+             type="number" min="1" max="15"
+             placeholder="e.g. 5" />
+    </div>
+  </div>
+</div>
+
+<!-- Reminders and Notifications -->
+<div class="page-section">
+  <h2>Reminders &amp; Notifications</h2>
+  <p class="page-intro">Manage your reminder preferences.</p>
+
+  <div class="field">
+    <label>
+      <input type="checkbox" name="period-reminders" />
+      Period reminders
+    </label>
+  </div>
+
+  <div class="field">
+    <label>
+      <input type="checkbox" name="symptom-reminders" />
+      Symptom logging reminders
+    </label>
+  </div>
+
+  <div class="field">
+    <label>
+      <input type="checkbox" name="health-notifications" />
+      Health education notifications
+    </label>
+  </div>
+
+  <div class="field">
+    <label for="reminder-time">Preferred Reminder Time</label>
+    <input id="reminder-time" name="reminder-time" type="time" />
+  </div>
+</div>
+
+<!-- Health Interests -->
+<div class="page-section">
+  <h2>Health Interests</h2>
+  <p class="page-intro">Choose the health topics relevant to you.</p>
+
+  <div class="form-grid">
+    <div class="field">
+      <label>
+        <input type="checkbox" name="health-interests"
+               value="menstrual-health" />
+        Menstrual Health
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        <input type="checkbox" name="health-interests" value="pcos" />
+        PCOS &amp; Hormonal Health
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        <input type="checkbox" name="health-interests"
+               value="pregnancy" />
+        Pregnancy &amp; Fertility
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        <input type="checkbox" name="health-interests" value="menopause" />
+        Menopause
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        <input type="checkbox" name="health-interests"
+               value="general-wellness" />
+        General Women's Wellness
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Privacy Controls -->
+<div class="page-section">
+  <h2>Privacy Controls</h2>
+  <p class="page-intro">
+    Manage your consent, health data, and privacy preferences.
+  </p>
+
+  <div class="field">
+    <label>
+      <input type="checkbox" name="health-data-consent" />
+      I consent to saving the health information I choose to provide.
+    </label>
+  </div>
+
+  <div class="field">
+    <label for="data-management">Health Data Management</label>
+    <select id="data-management" name="data-management">
+      <option value="">Choose an option</option>
+      <option value="keep">Keep my saved health data</option>
+      <option value="request-deletion">Request health data deletion</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <p>
+      Your health information is sensitive. Only provide details you
+      are comfortable sharing. Review the application's privacy policy
+      to understand how your information is handled.
+    </p>
+  </div>
+</div>
+        <div class="notice">This Stage 2 standalone prototype stores entries in this browser only. It is not a secure account system and should not be used for sensitive real-world health records until backend security is added.</div>
+      </section>
+
+      <!-- PERIOD TRACKER -->
+      <section class="stage2-page" id="period-tracker-page" data-page-content="period-tracker">
+        <h1 class="page-heading">Period Tracker</h1>
+        <p class="page-intro">Select a date on the calendar to record period details. End dates can be entered later.</p>
+        <div class="page-section">
+          <div class="calendar-toolbar">
+            <button class="action-btn" type="button" id="calendar-prev" aria-label="Previous month">← Previous</button>
+            <h2 id="calendar-month-label">Calendar</h2>
+            <button class="action-btn" type="button" id="calendar-next" aria-label="Next month">Next →</button>
+          </div>
+          <div class="calendar-grid" id="period-calendar" aria-label="Period calendar"></div>
+          <p class="field-help" style="margin-top:10px">Pink-highlighted dates indicate dates included in a recorded period. Select any date to use it as the start date in the form below.</p>
+        </div>
+        <div class="page-section">
+          <h2 id="period-form-title">Record a Period</h2>
+          <form id="period-form">
+            <input type="hidden" id="period-record-id" />
+            <div class="form-grid">
+              <div class="field"><label for="period-start">Period start date *</label><input id="period-start" type="date" required /></div>
+              <div class="field"><label for="period-end">Period end date (optional)</label><input id="period-end" type="date" /></div>
+              <div class="field"><label for="period-flow">Flow description *</label><select id="period-flow" required><option value="">Select flow</option><option>High</option><option>Normal</option><option>Low</option></select></div>
+              <div class="field"><label for="period-pain">Pain intensity *</label><select id="period-pain" required><option value="">Select pain intensity</option><option>High</option><option>Normal</option><option>Low</option></select></div>
+              <div class="field full"><label for="period-note">Note (optional)</label><textarea id="period-note" placeholder="Add any notes about this period"></textarea></div>
+            </div>
+            <div class="action-row">
+              <button class="action-btn primary" type="submit" id="period-save-button">Save Period</button>
+              <button class="action-btn" type="button" id="period-clear-button">Clear Form</button>
+              <span class="muted" id="period-status" role="status"></span>
+            </div>
+          </form>
+        </div>
+        <div class="page-section">
+          <h2>Recorded Periods</h2>
+          <div id="period-records" class="record-list"></div>
+        </div>
+      </section>
+
+      <!-- DAILY SYMPTOMS -->
+      <section class="stage2-page" id="daily-symptoms-page" data-page-content="daily-symptoms">
+        <h1 class="page-heading">Daily Symptoms</h1>
+        <p class="page-intro">Record symptoms by date to help you review your own history over time.</p>
+        <div class="page-section">
+          <h2 id="symptom-form-title">Record a Symptom</h2>
+          <form id="symptom-form">
+            <input type="hidden" id="symptom-record-id" />
+            <div class="form-grid">
+              <div class="field"><label for="symptom-date">Date *</label><input id="symptom-date" type="date" required /></div>
+              <div class="field"><label for="symptom-name">Symptom name *</label>
+                <select id="symptom-name" required>
+                  <option value="">Select a symptom</option>
+                  <option>Cramps</option><option>Pelvic pain</option><option>Lower back pain</option>
+                  <option>Fatigue</option><option>Bloating</option><option>Headache</option>
+                  <option>Nausea</option><option>Bowel or urinary discomfort</option><option>Other</option>
+                </select>
+              </div>
+              <div class="field full"><label for="symptom-description">Short description *</label><textarea id="symptom-description" required placeholder="Describe the symptom briefly"></textarea></div>
+              <div class="field"><label for="symptom-pain">Pain intensity *</label><select id="symptom-pain" required><option value="">Select intensity</option><option>High</option><option>Normal</option><option>Low</option><option>Not applicable</option></select></div>
+              <div class="field"><label for="symptom-impact">Impact on daily activities *</label><select id="symptom-impact" required><option value="">Select impact</option><option>None</option><option>Mild</option><option>Moderate</option><option>Severe</option></select></div>
+              <div class="field full"><label for="symptom-notes">Notes (optional)</label><textarea id="symptom-notes" placeholder="Add any additional notes"></textarea></div>
+            </div>
+            <div class="action-row">
+              <button class="action-btn primary" type="submit" id="symptom-save-button">Save Symptom</button>
+              <button class="action-btn" type="button" id="symptom-clear-button">Clear Form</button>
+              <span class="muted" id="symptom-status" role="status"></span>
+            </div>
+          </form>
+        </div>
+        <div class="page-section">
+          <h2>Symptom History</h2>
+          <div id="symptom-records" class="record-list"></div>
+        </div>
+      </section>
+
+      <!-- DASHBOARD -->
+      <section class="stage2-page" id="dashboard-page" data-page-content="dashboard">
+        <h1 class="page-heading">Health Dashboard</h1>
+        <p class="page-intro">Summaries and charts are based only on records entered in this browser.</p>
+        <div id="dashboard-content"></div>
+      </section>
+
+      <!-- CONSULTATION REPORT -->
+      <section class="stage2-page" id="consultation-report-page" data-page-content="consultation-report">
+        <h1 class="page-heading">Consultation Report</h1>
+        <p class="page-intro">Prepare a printable summary of the information you have recorded and questions for a healthcare professional.</p>
+        <div class="page-section no-print">
+          <h2>Questions for your healthcare professional</h2>
+          <div class="field"><label for="report-questions">Your questions (one per line)</label><textarea id="report-questions" placeholder="What would I like to ask during my appointment?"></textarea></div>
+          <div class="action-row"><button class="action-btn primary" id="generate-report" type="button">Update Report</button><button class="action-btn" id="print-report" type="button">Print / Save as PDF</button></div>
+          <p class="field-help" style="margin-top:8px">Use your browser's print window and choose “Save as PDF” to download a PDF copy.</p>
+        </div>
+        <div id="report-output" class="report-preview"></div>
+      </section>
+
+      <!-- RESOURCES -->
+      <section class="stage2-page" id="resources-page" data-page-content="resources">
+        <h1 class="page-heading">Resources</h1>
+        <p class="page-intro">General educational information about menstrual health. This content is not a diagnosis.</p>
+        <div class="page-section">
+          <h2>Understanding the Menstrual Cycle</h2>
+          <p>A menstrual cycle is counted from the first day of one period to the first day of the next period. Cycle timing and bleeding patterns can vary from person to person and from cycle to cycle.</p>
+        </div>
+        <div class="page-section">
+          <h2>Tracking Symptoms</h2>
+          <p>Recording the date, symptom, intensity, and impact on daily activities can help you describe your experience during a healthcare appointment. A record is not a diagnosis by itself.</p>
+        </div>
+        <div class="page-section">
+          <h2>When to seek medical advice</h2>
+          <p>Consider speaking with a qualified healthcare professional if symptoms are worrying, persistent, worsening, interfere with daily life, or feel unusual for you. Seek urgent medical care for severe or sudden symptoms.</p>
+        </div>
+        <div class="page-section">
+          <h2>Using HerHealth</h2>
+          <p>Use the Period Tracker and Daily Symptoms pages to enter your own records. The dashboard and consultation report will reflect the data you actually enter.</p>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="stage2-page" id="settings-page" data-page-content="settings">
+        <h1 class="page-heading">Settings</h1>
+        <p class="page-intro">Manage the profile information and local prototype data stored by this page.</p>
+        <div class="page-section">
+          <h2>Edit Profile</h2>
+          <p class="muted" style="font-size:13px;margin-bottom:14px">Edit your profile details on the Profile page.</p>
+          <button class="action-btn primary" type="button" data-open-page="profile">Go to Profile</button>
+        </div>
+        <div class="page-section">
+          <h2>Delete Account / Clear Local Data</h2>
+          <p class="muted" style="font-size:13px">This standalone Stage 2 prototype has no real account system. The button below clears HerHealth data saved by this page in this browser, including profile, period records, symptom records, and community posts.</p>
+          <div class="action-row"><button class="action-btn danger" id="delete-local-data" type="button">Delete Local HerHealth Data</button></div>
+          <p id="settings-status" class="muted" role="status" style="margin-top:10px;font-size:13px"></p>
+        </div>
+      </section>
+
+      <!-- COMMUNITY -->
+      <section class="stage2-page" id="community-page" data-page-content="community">
+        <h1 class="page-heading">Community</h1>
+        <p class="page-intro">A simple local prototype space to share opinions and ideas. Posts are stored only in this browser and are not shared with other users.</p>
+        <div class="page-section">
+          <h2>Share an Opinion or Idea</h2>
+          <form id="community-form">
+            <div class="form-grid">
+              <div class="field"><label for="community-name">Display name (optional)</label><input id="community-name" type="text" placeholder="Choose a display name" /></div>
+              <div class="field"><label for="community-topic">Topic *</label><input id="community-topic" type="text" required placeholder="Add a short topic" /></div>
+              <div class="field full"><label for="community-message">Your opinion or idea *</label><textarea id="community-message" required placeholder="Share respectfully"></textarea></div>
+            </div>
+            <div class="action-row"><button class="action-btn primary" type="submit">Publish Post</button><span class="muted" id="community-status" role="status"></span></div>
+          </form>
+        </div>
+        <div class="page-section">
+          <h2>Community Posts</h2>
+          <div id="community-posts"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    /*
+      HerHealth Stage 2 prototype.
+      Authentication is intentionally not included yet, as requested.
+      Records are stored in this browser only. localStorage is not secure
+      storage for sensitive medical information or real multi-user accounts.
+    */
+    const STORAGE_KEY = "herhealth_stage2_data_v1";
+    const emptyData = () => ({ profile: {}, periods: [], symptoms: [], posts: [], reportQuestions: "" });
+    let appData = loadData();
+    let calendarDate = new Date();
+    let selectedCalendarDate = "";
+
+    function loadData() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return emptyData();
+        const parsed = JSON.parse(saved);
+        return {
+          profile: parsed.profile || {},
+          periods: Array.isArray(parsed.periods) ? parsed.periods : [],
+          symptoms: Array.isArray(parsed.symptoms) ? parsed.symptoms : [],
+          posts: Array.isArray(parsed.posts) ? parsed.posts : [],
+          reportQuestions: parsed.reportQuestions || ""
+        };
+      } catch (error) {
+        return emptyData();
+      }
+    }
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+      renderAll();
+    }
+    function makeId() {
+      return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+    }
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, ch => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[ch]));
+    }
+    function formatDate(dateString) {
+      if (!dateString) return "Not entered";
+      const date = new Date(dateString + "T12:00:00");
+      return Number.isNaN(date.getTime()) ? dateString : date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    }
+    function dateDiffDays(a, b) {
+      const first = new Date(a + "T12:00:00");
+      const second = new Date(b + "T12:00:00");
+      return Math.round((second - first) / 86400000);
+    }
+    function showPage(page) {
+      const validPages = ["home", "profile", "period-tracker", "daily-symptoms", "dashboard", "consultation-report", "resources", "settings", "community"];
+      if (!validPages.includes(page)) page = "home";
+      document.getElementById("home-view").style.display = page === "home" ? "block" : "none";
+      document.querySelectorAll("[data-page-content]").forEach(section => {
+        section.classList.toggle("active-page", section.dataset.pageContent === page);
+      });
+      document.querySelectorAll(".nav-link").forEach(link => {
+        const active = link.dataset.page === page;
+        link.classList.toggle("active", active);
+        if (active) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+      if (page === "dashboard") renderDashboard();
+      if (page === "consultation-report") renderReport();
+      if (page === "period-tracker") renderCalendar();
+      if (page === "profile") fillProfileForm();
+      if (page === "community") renderCommunity();
+      window.scrollTo({ top: 0, behavior: "auto" });
+      if (location.hash !== "#" + page) history.replaceState(null, "", "#" + page);
+    }
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        showPage(link.dataset.page);
+      });
+    });
+    document.querySelectorAll("[data-open-page]").forEach(element => {
+      element.addEventListener("click", () => showPage(element.dataset.openPage));
+      if (element.classList.contains("feature-card")) {
+        element.tabIndex = 0;
+        element.setAttribute("role", "button");
+        element.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            showPage(element.dataset.openPage);
+          }
+        });
+      }
+    });
+    document.getElementById("explore-button").addEventListener("click", event => {
+      event.preventDefault();
+      document.getElementById("features").scrollIntoView({ behavior: "smooth" });
+    });
+
+    /* Profile */
+    function fillProfileForm() {
+      document.getElementById("profile-name").value = appData.profile.name || "";
+      document.getElementById("profile-age").value = appData.profile.age || "";
+      document.getElementById("profile-email").value = appData.profile.email || "";
+      document.getElementById("profile-pronouns").value = appData.profile.preferred || "";
+    }
+    document.getElementById("profile-form").addEventListener("submit", event => {
+      event.preventDefault();
+      appData.profile = {
+        name: document.getElementById("profile-name").value.trim(),
+        age: document.getElementById("profile-age").value,
+        email: document.getElementById("profile-email").value.trim(),
+        preferred: document.getElementById("profile-pronouns").value.trim()
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+      document.getElementById("profile-status").textContent = "Profile saved in this browser.";
+    });
+
+    /* Period records and calendar */
+    function overlapsPeriod(dateString, period) {
+      if (dateString < period.start) return false;
+      if (period.end && dateString > period.end) return false;
+      return true;
+    }
+    function renderCalendar() {
+      const calendar = document.getElementById("period-calendar");
+      const year = calendarDate.getFullYear();
+      const month = calendarDate.getMonth();
+      document.getElementById("calendar-month-label").textContent = calendarDate.toLocaleDateString(undefined, { month: "long", year: "numeric" });
+      const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      calendar.innerHTML = weekdays.map(day => `<div class="calendar-weekday">${day}</div>`).join("");
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const previousMonthDays = new Date(year, month, 0).getDate();
+      for (let i = 0; i < 42; i++) {
+        let dayNumber, dayDate, muted = false;
+        if (i < firstDay) {
+          dayNumber = previousMonthDays - firstDay + i + 1;
+          dayDate = new Date(year, month - 1, dayNumber);
+          muted = true;
+        } else if (i >= firstDay + daysInMonth) {
+          dayNumber = i - (firstDay + daysInMonth) + 1;
+          dayDate = new Date(year, month + 1, dayNumber);
+          muted = true;
+        } else {
+          dayNumber = i - firstDay + 1;
+          dayDate = new Date(year, month, dayNumber);
+        }
+        const dateString = `${dayDate.getFullYear()}-${String(dayDate.getMonth() + 1).padStart(2, "0")}-${String(dayDate.getDate()).padStart(2, "0")}`;
+        const inPeriod = appData.periods.some(period => overlapsPeriod(dateString, period));
+        const selected = selectedCalendarDate === dateString;
+        const classes = ["calendar-day", muted ? "muted-day" : "", inPeriod ? "period-day" : "", selected ? "selected-day" : ""].filter(Boolean).join(" ");
+        calendar.insertAdjacentHTML("beforeend", `<button type="button" class="${classes}" data-date="${dateString}" aria-label="${formatDate(dateString)}${inPeriod ? ", recorded period" : ""}"><span>${dayNumber}</span>${inPeriod ? '<span class="day-dot">♥</span>' : ""}</button>`);
+      }
+      calendar.querySelectorAll("[data-date]").forEach(button => {
+        button.addEventListener("click", () => {
+          selectedCalendarDate = button.dataset.date;
+          document.getElementById("period-start").value = selectedCalendarDate;
+          renderCalendar();
+          document.getElementById("period-start").focus();
+        });
+      });
+    }
+    document.getElementById("calendar-prev").addEventListener("click", () => {
+      calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth() - 1, 1);
+      renderCalendar();
+    });
+    document.getElementById("calendar-next").addEventListener("click", () => {
+      calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth() + 1, 1);
+      renderCalendar();
+    });
+    document.getElementById("period-end").addEventListener("change", event => {
+      const start = document.getElementById("period-start").value;
+      if (start && event.target.value && event.target.value < start) {
+        event.target.setCustomValidity("End date cannot be earlier than the start date.");
+      } else {
+        event.target.setCustomValidity("");
+      }
+    });
+    document.getElementById("period-start").addEventListener("change", () => {
+      document.getElementById("period-end").dispatchEvent(new Event("change"));
+    });
+    document.getElementById("period-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const id = document.getElementById("period-record-id").value;
+      const start = document.getElementById("period-start").value;
+      const end = document.getElementById("period-end").value;
+      if (end && end < start) {
+        document.getElementById("period-end").setCustomValidity("End date cannot be earlier than the start date.");
+        document.getElementById("period-end").reportValidity();
+        return;
+      }
+      const record = {
+        id: id || makeId(),
+        start,
+        end,
+        flow: document.getElementById("period-flow").value,
+        pain: document.getElementById("period-pain").value,
+        note: document.getElementById("period-note").value.trim()
+      };
+      const index = appData.periods.findIndex(item => item.id === id);
+      if (index >= 0) appData.periods[index] = record;
+      else appData.periods.push(record);
+      appData.periods.sort((a, b) => a.start.localeCompare(b.start));
+      document.getElementById("period-status").textContent = "Period record saved.";
+      clearPeriodForm(false);
+      saveData();
+    });
+    function clearPeriodForm(clearStatus = true) {
+      document.getElementById("period-form").reset();
+      document.getElementById("period-record-id").value = "";
+      document.getElementById("period-form-title").textContent = "Record a Period";
+      document.getElementById("period-save-button").textContent = "Save Period";
+      if (clearStatus) document.getElementById("period-status").textContent = "";
+      document.getElementById("period-end").setCustomValidity("");
+    }
+    document.getElementById("period-clear-button").addEventListener("click", () => clearPeriodForm());
+    function renderPeriods() {
+      const container = document.getElementById("period-records");
+      if (!appData.periods.length) {
+        container.innerHTML = '<div class="empty-state">No period records yet. Select a date on the calendar and enter your first record.</div>';
+        return;
+      }
+      container.innerHTML = [...appData.periods].sort((a,b) => b.start.localeCompare(a.start)).map(period => `
+        <article class="record-card">
+          <div class="record-card-top">
+            <div>
+              <h3>Period: ${escapeHTML(formatDate(period.start))}${period.end ? ` – ${escapeHTML(formatDate(period.end))}` : " – end date not entered"}</h3>
+              <p class="record-meta">Flow: ${escapeHTML(period.flow)} · Pain intensity: ${escapeHTML(period.pain)}${period.note ? "\nNote: " + escapeHTML(period.note) : ""}</p>
+            </div>
+            <div class="small-actions">
+              <button class="action-btn" type="button" data-edit-period="${escapeHTML(period.id)}">Edit</button>
+              <button class="action-btn danger" type="button" data-delete-period="${escapeHTML(period.id)}">Delete</button>
+            </div>
+          </div>
+        </article>`).join("");
+      container.querySelectorAll("[data-edit-period]").forEach(button => button.addEventListener("click", () => {
+        const period = appData.periods.find(item => item.id === button.dataset.editPeriod);
+        if (!period) return;
+        document.getElementById("period-record-id").value = period.id;
+        document.getElementById("period-start").value = period.start;
+        document.getElementById("period-end").value = period.end || "";
+        document.getElementById("period-flow").value = period.flow;
+        document.getElementById("period-pain").value = period.pain;
+        document.getElementById("period-note").value = period.note || "";
+        document.getElementById("period-form-title").textContent = "Edit Period Record";
+        document.getElementById("period-save-button").textContent = "Update Period";
+        selectedCalendarDate = period.start;
+        calendarDate = new Date(period.start + "T12:00:00");
+        renderCalendar();
+        document.getElementById("period-form-title").scrollIntoView({ behavior: "smooth", block: "start" });
+      }));
+      container.querySelectorAll("[data-delete-period]").forEach(button => button.addEventListener("click", () => {
+        if (!confirm("Delete this period record?")) return;
+        appData.periods = appData.periods.filter(item => item.id !== button.dataset.deletePeriod);
+        saveData();
+      }));
+    }
+
+    /* Daily symptoms */
+    document.getElementById("symptom-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const id = document.getElementById("symptom-record-id").value;
+      const record = {
+        id: id || makeId(),
+        date: document.getElementById("symptom-date").value,
+        name: document.getElementById("symptom-name").value,
+        description: document.getElementById("symptom-description").value.trim(),
+        pain: document.getElementById("symptom-pain").value,
+        impact: document.getElementById("symptom-impact").value,
+        notes: document.getElementById("symptom-notes").value.trim()
+      };
+      const index = appData.symptoms.findIndex(item => item.id === id);
+      if (index >= 0) appData.symptoms[index] = record;
+      else appData.symptoms.push(record);
+      appData.symptoms.sort((a,b) => a.date.localeCompare(b.date));
+      document.getElementById("symptom-status").textContent = "Symptom record saved.";
+      clearSymptomForm(false);
+      saveData();
+    });
+    function clearSymptomForm(clearStatus = true) {
+      document.getElementById("symptom-form").reset();
+      document.getElementById("symptom-record-id").value = "";
+      document.getElementById("symptom-form-title").textContent = "Record a Symptom";
+      document.getElementById("symptom-save-button").textContent = "Save Symptom";
+      if (clearStatus) document.getElementById("symptom-status").textContent = "";
+    }
+    document.getElementById("symptom-clear-button").addEventListener("click", () => clearSymptomForm());
+    function renderSymptoms() {
+      const container = document.getElementById("symptom-records");
+      if (!appData.symptoms.length) {
+        container.innerHTML = '<div class="empty-state">No symptoms recorded yet. Your symptom history will appear here after you add a record.</div>';
+        return;
+      }
+      container.innerHTML = [...appData.symptoms].sort((a,b) => b.date.localeCompare(a.date)).map(item => `
+        <article class="record-card">
+          <div class="record-card-top">
+            <div>
+              <h3>${escapeHTML(item.name)} · ${escapeHTML(formatDate(item.date))}</h3>
+              <p class="record-meta">${escapeHTML(item.description)}
+Pain intensity: ${escapeHTML(item.pain)} · Daily-life impact: ${escapeHTML(item.impact)}${item.notes ? "\nNotes: " + escapeHTML(item.notes) : ""}</p>
+            </div>
+            <div class="small-actions">
+              <button class="action-btn" type="button" data-edit-symptom="${escapeHTML(item.id)}">Edit</button>
+              <button class="action-btn danger" type="button" data-delete-symptom="${escapeHTML(item.id)}">Delete</button>
+            </div>
+          </div>
+        </article>`).join("");
+      container.querySelectorAll("[data-edit-symptom]").forEach(button => button.addEventListener("click", () => {
+        const item = appData.symptoms.find(record => record.id === button.dataset.editSymptom);
+        if (!item) return;
+        document.getElementById("symptom-record-id").value = item.id;
+        document.getElementById("symptom-date").value = item.date;
+        document.getElementById("symptom-name").value = item.name;
+        document.getElementById("symptom-description").value = item.description;
+        document.getElementById("symptom-pain").value = item.pain;
+        document.getElementById("symptom-impact").value = item.impact;
+        document.getElementById("symptom-notes").value = item.notes || "";
+        document.getElementById("symptom-form-title").textContent = "Edit Symptom Record";
+        document.getElementById("symptom-save-button").textContent = "Update Symptom";
+        document.getElementById("symptom-form-title").scrollIntoView({ behavior: "smooth", block: "start" });
+      }));
+      container.querySelectorAll("[data-delete-symptom]").forEach(button => button.addEventListener("click", () => {
+        if (!confirm("Delete this symptom record?")) return;
+        appData.symptoms = appData.symptoms.filter(record => record.id !== button.dataset.deleteSymptom);
+        saveData();
+      }));
+    }
+
+    /* Dashboard: descriptive observations only when sufficient real entries exist */
+    function cycleLengths() {
+      const sorted = [...appData.periods].filter(item => item.start).sort((a,b) => a.start.localeCompare(b.start));
+      const starts = [];
+      sorted.forEach(item => { if (!starts.length || starts[starts.length - 1] !== item.start) starts.push(item.start); });
+      const lengths = [];
+      for (let i = 1; i < starts.length; i++) {
+        const days = dateDiffDays(starts[i - 1], starts[i]);
+        if (days > 0 && days <= 100) lengths.push({ from: starts[i - 1], to: starts[i], days });
+      }
+      return { starts, lengths };
+    }
+    function svgBarChart(values, label, unit = "days") {
+      if (!values.length) return '<div class="empty-state">Not enough recorded history to display a chart yet.</div>';
+      const width = 620, height = 220, left = 45, bottom = 35, top = 18;
+      const max = Math.max(...values.map(v => v.value), 1);
+      const chartHeight = height - top - bottom;
+      const chartWidth = width - left - 15;
+      const step = chartWidth / values.length;
+      let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHTML(label)}">`;
+      for (let i = 0; i <= 4; i++) {
+        const y = top + chartHeight * i / 4;
+        const value = Math.round(max * (4 - i) / 4);
+        svg += `<line x1="${left}" y1="${y}" x2="${width - 10}" y2="${y}" stroke="#f2e5eb" stroke-width="1"/>`;
+        svg += `<text x="${left - 8}" y="${y + 4}" font-size="11" text-anchor="end" fill="#71809a">${value}</text>`;
+      }
+      values.forEach((entry, i) => {
+        const barWidth = Math.min(42, step * .55);
+        const barHeight = entry.value / max * chartHeight;
+        const x = left + step * i + (step - barWidth) / 2;
+        const y = top + chartHeight - barHeight;
+        svg += `<rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" rx="5" fill="#e83e78" opacity=".82"><title>${escapeHTML(entry.label)}: ${entry.value} ${unit}</title></rect>`;
+        svg += `<text x="${x + barWidth/2}" y="${height - 12}" font-size="10" text-anchor="middle" fill="#71809a">${escapeHTML(entry.label)}</text>`;
+      });
+      svg += "</svg>";
+      return `<div class="chart-wrap">${svg}<p class="chart-caption">${escapeHTML(label)} (${escapeHTML(unit)})</p></div>`;
+    }
+    function renderDashboard() {
+      const container = document.getElementById("dashboard-content");
+      const { starts, lengths } = cycleLengths();
+      const enoughHistory = lengths.length >= 2;
+      if (!appData.periods.length && !appData.symptoms.length) {
+        container.innerHTML = '<div class="empty-state">Your Health Dashboard will appear here after you enter period or symptom records. There is not enough data yet to show personal observations or charts.</div>';
+        return;
+      }
+      const avg = lengths.length ? Math.round(lengths.reduce((sum, item) => sum + item.days, 0) / lengths.length) : null;
+      const highPain = appData.symptoms.filter(item => item.pain === "High").length + appData.periods.filter(item => item.pain === "High").length;
+      const symptomCounts = {};
+      appData.symptoms.forEach(item => { symptomCounts[item.name] = (symptomCounts[item.name] || 0) + 1; });
+      const repeatedSymptoms = Object.entries(symptomCounts).filter(([,count]) => count >= 2);
+      const periodDays = new Set();
+      appData.periods.forEach(period => {
+        if (!period.start) return;
+        const start = new Date(period.start + "T12:00:00");
+        const end = period.end ? new Date(period.end + "T12:00:00") : new Date(start);
+        const span = Math.min(dateDiffDays(period.start, period.end || period.start), 45);
+        for (let i = 0; i <= Math.max(0, span); i++) {
+          const d = new Date(start); d.setDate(d.getDate() + i);
+          periodDays.add(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`);
+        }
+      });
+      const symptomsOnPeriodDays = appData.symptoms.filter(item => periodDays.has(item.date)).length;
+      const recentActivity = [
+        ...appData.periods.map(item => ({ date: item.start, text: `Period record started ${formatDate(item.start)}${item.end ? ` and ended ${formatDate(item.end)}` : " (end date not entered)"}` })),
+        ...appData.symptoms.map(item => ({ date: item.date, text: `Symptom recorded: ${item.name}` }))
+      ].sort((a,b) => b.date.localeCompare(a.date)).slice(0, 8);
+      const lengthValues = lengths.slice(-8).map((item, index) => ({ label: String(index + 1), value: item.days }));
+      const symptomValues = Object.entries(symptomCounts).sort((a,b) => b[1] - a[1]).slice(0, 8).map(([name, count]) => ({ label: name.length > 9 ? name.slice(0,8) + "…" : name, value: count }));
+      let observations = [];
+      if (lengths.length < 2) observations.push("Record at least three period start dates to begin comparing cycle-length changes. Cycle length is calculated from one period start date to the next.");
+      else {
+        observations.push(`Your average recorded cycle length is ${avg} days, based on ${lengths.length} interval(s). This is a summary of your entries, not a medical assessment.`);
+        const min = Math.min(...lengths.map(item => item.days)), max = Math.max(...lengths.map(item => item.days));
+        if (max - min >= 7) observations.push(`Recorded cycle lengths range from ${min} to ${max} days, a difference of ${max-min} days. Consider discussing changes that concern you with a healthcare professional.`);
+        else observations.push(`Recorded cycle lengths range from ${min} to ${max} days in the intervals entered.`);
+      }
+      if (appData.symptoms.length) {
+        if (repeatedSymptoms.length) observations.push("Symptoms entered on multiple dates: " + repeatedSymptoms.map(([name,count]) => `${name} (${count} entries)`).join(", ") + ".");
+        else observations.push("No symptom name has been entered more than once in the records available so far.");
+        if (symptomsOnPeriodDays) observations.push(`${symptomsOnPeriodDays} symptom record(s) fall on dates included in a period with a start/end range entered. Records may overlap with period days, but this does not establish a cause.`);
+      }
+      if (highPain) observations.push(`High pain intensity was selected in ${highPain} record(s). If pain is severe, persistent, worsening, or affects daily activities, consider seeking advice from a qualified healthcare professional.`);
+      container.innerHTML = `
+        <div class="summary-grid">
+          <div class="summary-card"><span>Period records</span><strong>${appData.periods.length}</strong></div>
+          <div class="summary-card"><span>Symptom records</span><strong>${appData.symptoms.length}</strong></div>
+          <div class="summary-card"><span>Average cycle length</span><strong>${avg === null ? "—" : avg + " days"}</strong></div>
+        </div>
+        <div class="page-section"><h2>Observations</h2>${observations.map(item => `<p style="font-size:14px;margin:9px 0;color:#52617c">• ${escapeHTML(item)}</p>`).join("")}</div>
+        <div class="page-section"><h2>Period Cycle History</h2>${enoughHistory ? svgBarChart(lengthValues, "Recent cycle intervals", "days") : '<div class="empty-state">Not enough cycle history for a chart yet. Enter at least three distinct period start dates to compare two or more cycle intervals.</div>'}</div>
+        <div class="page-section"><h2>Symptom History Chart</h2>${appData.symptoms.length >= 2 ? svgBarChart(symptomValues, "Symptom entries by name", "entries") : '<div class="empty-state">Add more symptom entries to see a symptom history chart. Your recorded entries will be used when available.</div>'}</div>
+        <div class="page-section"><h2>Recent Activity</h2>${recentActivity.length ? `<div class="record-list">${recentActivity.map(item => `<div class="record-card"><p style="font-size:14px">${escapeHTML(item.text)}</p><p class="record-meta">${escapeHTML(formatDate(item.date))}</p></div>`).join("")}</div>` : '<div class="empty-state">No activity recorded yet.</div>'}</div>`;
+    }
+
+    /* Consultation report */
+    document.getElementById("report-questions").addEventListener("input", event => {
+      appData.reportQuestions = event.target.value;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+    });
+    function renderReport() {
+      document.getElementById("report-questions").value = appData.reportQuestions || "";
+      const output = document.getElementById("report-output");
+      const hasData = appData.periods.length || appData.symptoms.length;
+      if (!hasData) {
+        output.innerHTML = `<h2>Consultation Summary</h2><div class="empty-state">There are no period or symptom records to summarize yet. Add your own records in Period Tracker or Daily Symptoms, then return here to generate a report. No health conclusion can be drawn from missing data.</div>`;
+        return;
+      }
+      const { lengths } = cycleLengths();
+      const periodRows = appData.periods.length ? appData.periods.slice().sort((a,b) => a.start.localeCompare(b.start)).map(item =>
+        `<li><strong>${escapeHTML(formatDate(item.start))}</strong> to ${escapeHTML(formatDate(item.end))} — Flow: ${escapeHTML(item.flow)}; Pain: ${escapeHTML(item.pain)}${item.note ? `; Note: ${escapeHTML(item.note)}` : ""}</li>`).join("") : "<li>No period records entered.</li>";
+      const symptomRows = appData.symptoms.length ? appData.symptoms.slice().sort((a,b) => a.date.localeCompare(b.date)).map(item =>
+        `<li><strong>${escapeHTML(formatDate(item.date))}</strong> — ${escapeHTML(item.name)}: ${escapeHTML(item.description)}; Pain intensity: ${escapeHTML(item.pain)}; Daily-life impact: ${escapeHTML(item.impact)}${item.notes ? `; Notes: ${escapeHTML(item.notes)}` : ""}</li>`).join("") : "<li>No symptom records entered.</li>";
+      const lengthRows = lengths.length ? lengths.map(item => `<li>${escapeHTML(formatDate(item.from))} to ${escapeHTML(formatDate(item.to))}: ${item.days} days</li>`).join("") : "<li>Not enough distinct period start dates to calculate cycle lengths yet.</li>";
+      const questions = (appData.reportQuestions || "").split(/\r?\n/).map(q => q.trim()).filter(Boolean);
+      output.innerHTML = `
+        <h2>HerHealth Consultation Summary</h2>
+        <p><strong>Prepared on:</strong> ${escapeHTML(new Date().toLocaleDateString())}</p>
+        <p>This report summarizes information entered by the user. It is not a diagnosis and does not determine whether a person is healthy or unwell.</p>
+        <h3>Recorded Period Dates and Ratings</h3><ul>${periodRows}</ul>
+        <h3>Recorded Cycle Lengths</h3><ul>${lengthRows}</ul>
+        <h3>Recorded Symptoms</h3><ul>${symptomRows}</ul>
+        <h3>Questions for the Healthcare Professional</h3>${questions.length ? `<ul>${questions.map(q => `<li>${escapeHTML(q)}</li>`).join("")}</ul>` : "<p>No questions have been added yet. Enter questions above if you would like them included.</p>"}
+        <p style="margin-top:18px"><strong>Reminder:</strong> Please review this summary for accuracy before sharing it with a healthcare professional.</p>`;
+    }
+    document.getElementById("generate-report").addEventListener("click", () => {
+      appData.reportQuestions = document.getElementById("report-questions").value;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+      renderReport();
+    });
+    document.getElementById("print-report").addEventListener("click", () => {
+      appData.reportQuestions = document.getElementById("report-questions").value;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+      renderReport();
+      window.print();
+    });
+
+    /* Community prototype: local to this browser, not shared with other people */
+    document.getElementById("community-form").addEventListener("submit", event => {
+      event.preventDefault();
+      appData.posts.unshift({
+        id: makeId(),
+        name: document.getElementById("community-name").value.trim() || "Community member",
+        topic: document.getElementById("community-topic").value.trim(),
+        message: document.getElementById("community-message").value.trim(),
+        createdAt: new Date().toISOString()
+      });
+      document.getElementById("community-form").reset();
+      document.getElementById("community-status").textContent = "Post saved in this browser.";
+      saveData();
+    });
+    function renderCommunity() {
+      const container = document.getElementById("community-posts");
+      if (!appData.posts.length) {
+        container.innerHTML = '<div class="empty-state">No community posts yet. Share an opinion or idea to start this local demo.</div>';
+        return;
+      }
+      container.innerHTML = appData.posts.map(post => `
+        <article class="community-post">
+          <h3>${escapeHTML(post.topic)}</h3>
+          <p style="font-size:14px;white-space:pre-wrap;margin:7px 0">${escapeHTML(post.message)}</p>
+          <p class="post-date">Shared by ${escapeHTML(post.name)} · ${escapeHTML(new Date(post.createdAt).toLocaleString())}</p>
+          <div class="small-actions" style="margin-top:8px"><button class="action-btn danger" type="button" data-delete-post="${escapeHTML(post.id)}">Delete</button></div>
+        </article>`).join("");
+      container.querySelectorAll("[data-delete-post]").forEach(button => button.addEventListener("click", () => {
+        if (!confirm("Delete this post from this browser?")) return;
+        appData.posts = appData.posts.filter(post => post.id !== button.dataset.deletePost);
+        saveData();
+      }));
+    }
+
+    /* Settings: prototype data deletion, not a real account deletion */
+    document.getElementById("delete-local-data").addEventListener("click", () => {
+      const confirmed = confirm("This will permanently clear HerHealth records saved by this prototype in this browser. Continue?");
+      if (!confirmed) return;
+      localStorage.removeItem(STORAGE_KEY);
+      appData = emptyData();
+      fillProfileForm();
+      clearPeriodForm();
+      clearSymptomForm();
+      document.getElementById("settings-status").textContent = "Local HerHealth data cleared from this browser.";
+      renderAll();
+    });
+
+    function renderAll() {
+      renderPeriods();
+      renderSymptoms();
+      renderCalendar();
+      renderCommunity();
+      if (document.getElementById("dashboard-page").classList.contains("active-page")) renderDashboard();
+      if (document.getElementById("consultation-report-page").classList.contains("active-page")) renderReport();
+    }
+
+    /* Load the requested page from the URL hash; otherwise show the original homepage. */
+    const initialPage = location.hash.replace("#", "");
+    showPage(initialPage || "home");
+    fillProfileForm();
+    renderAll();
+  </script>
+</body>
+</html>
