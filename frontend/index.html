@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HerHealth | Track. Understand. Take Charge.</title>
+
+  <style>
+    :root {
+      --pink: #e83e78;
+      --pink-dark: #8c174f;
+      --pink-light: #fff1f5;
+      --pink-pale: #fff8fa;
+      --text: #293954;
+      --muted: #71809a;
+      --border: #f2e5eb;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #fffdfd;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    button, a {
+      font: inherit;
+    }
+
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid #e83e78;
+      outline-offset: 3px;
+    }
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* LEFT SIDEBAR */
+
+    .sidebar {
+      width: 245px;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, #fff3f7, #fffafb);
+      border-right: 1px solid var(--border);
+      padding: 28px 17px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0 9px;
+      margin-bottom: 38px;
+    }
+
+    .brand-icon {
+      font-size: 36px;
+      color: var(--pink);
+    }
+
+    .brand h2 {
+      color: var(--pink);
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    .brand p {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--pink-dark);
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 12px 13px;
+      border-radius: 13px;
+      text-decoration: none;
+      color: #40506b;
+      font-size: 14px;
+      transition: background 0.25s, color 0.25s,
+                  transform 0.25s;
+    }
+
+    .nav-link .icon {
+      width: 22px;
+      font-size: 19px;
+      text-align: center;
+    }
+
+    .nav-link:hover {
+      background: #ffe4ed;
+      color: var(--pink-dark);
+      transform: translateX(4px);
+    }
+
+    .nav-link.active {
+      background: #f9dfe9;
+      color: #b51f5a;
+      font-weight: 600;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 30px 10px 5px;
+      color: #d77ba0;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* MAIN AREA */
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 0 34px 30px;
+    }
+
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #f6edf1;
+      margin-bottom: 24px;
+    }
+
+    .topbar-label {
+      color: var(--pink-dark);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .topbar-right {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* HERO BANNER */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      min-height: 280px;
+      padding: 34px 38px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 80% 35%,
+          #ffe0eb 0, transparent 30%),
+        linear-gradient(110deg, #fff0f5, #fff9fb);
+      border: 1px solid #fff0f5;
+    }
+
+    .hero-content {
+      max-width: 570px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: #bc3267;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      color: var(--pink-dark);
+      font-size: clamp(30px, 3vw, 43px);
+      line-height: 1.2;
+      margin-bottom: 9px;
+    }
+
+    .tagline {
+      color: var(--pink);
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 13px;
+    }
+
+    .hero-description {
+      max-width: 450px;
+      color: #52617c;
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 23px;
+      border: none;
+      border-radius: 30px;
+      background: var(--pink);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 5px 14px #e83e7825;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .primary-btn:hover {
+      background: #ca2862;
+      transform: translateY(-3px);
+    }
+
+    .hero-art {
+      width: 235px;
+      height: 235px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #fbd7e5, #fff4f8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+      margin-right: 4%;
+    }
+
+    /* FEATURE CARDS */
+
+    .section-title {
+      color: var(--pink-dark);
+      font-size: 20px;
+      margin: 30px 0 16px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 22px 18px;
+      border: 1px solid transparent;
+      border-radius: 17px;
+      min-height: 185px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px #74304c10;
+      border-color: var(--border);
+    }
+
+    .feature-card:nth-child(1) { background: #fff1f5; }
+    .feature-card:nth-child(2) { background: #f7f2ff; }
+    .feature-card:nth-child(3) { background: #effaf7; }
+    .feature-card:nth-child(4) { background: #f0f7ff; }
+
+    .feature-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: white;
+      font-size: 23px;
+      margin-bottom: 13px;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* LOWER PANELS */
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      background: white;
+    }
+
+    .panel h2 {
+      font-size: 18px;
+      color: var(--pink-dark);
+      margin-bottom: 13px;
+    }
+
+    .welcome-note {
+      background: var(--pink-pale);
+      border-radius: 13px;
+      padding: 18px;
+      color: #586680;
+      font-size: 14px;
+    }
+
+    .welcome-note strong {
+      color: #a52359;
+    }
+
+    .privacy {
+      margin-top: 17px;
+      padding: 16px;
+      border-radius: 13px;
+      background: #f0faf5;
+      color: #326c54;
+      font-size: 13px;
+    }
+
+    .privacy h3,
+    .disclaimer h3 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .disclaimer {
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 13px;
+      background: #fff6eb;
+      color: #79552f;
+      font-size: 13px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #8a91a2;
+      font-size: 12px;
+      padding: 26px 8px 5px;
+    }
+
+    /* RESPONSIVE LAYOUT */
+
+    @media (max-width: 1100px) {
+      .sidebar {
+        width: 215px;
+      }
+
+      .main {
+        padding: 0 22px 25px;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-art {
+        width: 170px;
+        height: 170px;
+        font-size: 75px;
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .app {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .brand {
+        margin-bottom: 15px;
+      }
+
+      .nav-menu {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 5px;
+      }
+
+      .nav-link {
+        flex-shrink: 0;
+        padding: 9px 12px;
+      }
+
+      .sidebar-footer {
+        display: none;
+      }
+
+      .main {
+        padding: 0 15px 20px;
+      }
+
+      .topbar {
+        min-height: 58px;
+        margin-bottom: 15px;
+      }
+
+      .hero {
+        padding: 25px 20px;
+      }
+
+      .hero-art {
+        display: none;
+      }
+
+      .features {
+        gap: 12px;
+      }
+
+      .feature-card {
+        padding: 17px 13px;
+      }
+
+      .bottom-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- LEFT NAVIGATION -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">❀</div>
+        <div>
+          <h2>HerHealth</h2>
+          <p>Track · Understand · Take Charge</p>
+        </div>
+      </div>
+
+      <nav class="nav-menu" aria-label="Main navigation">
+        <a class="nav-link active" href="#home" aria-current="page">
+          <span class="icon">⌂</span> Home
+        </a>
+        <a class="nav-link" href="#profile">
+          <span class="icon">♡</span> Profile
+        </a>
+        <a class="nav-link" href="#period-tracker">
+          <span class="icon">▦</span> Period Tracker
+        </a>
+        <a class="nav-link" href="#daily-symptoms">
+          <span class="icon">✧</span> Daily Symptoms
+        </a>
+        <a class="nav-link" href="#dashboard">
+          <span class="icon">♡</span> Health Dashboard
+        </a>
+        <a class="nav-link" href="#consultation-report">
+          <span class="icon">▤</span> Consultation Report
+        </a>
+        <a class="nav-link" href="#resources">
+          <span class="icon">▱</span> Resources
+        </a>
+        <a class="nav-link" href="#settings">
+          <span class="icon">⚙</span> Settings
+        </a>
+        <a class="nav-link" href="#community">
+          <span class="icon">♧</span> Community
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        ♡<br />
+        Your health matters.<br />
+        Always.
+      </div>
+    </aside>
+
+    <!-- MAIN HOMEPAGE -->
+    <main class="main" id="home">
+
+      <header class="topbar">
+        <span class="topbar-label">Your personal health space</span>
+        <span class="topbar-right">Know your health. Feel empowered. ♡</span>
+      </header>
+
+      <!-- WELCOME BANNER -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow">Welcome to HerHealth</p>
+
+          <h1 id="hero-title">
+            Your health journey<br />
+            starts here <span aria-hidden="true">♥</span>
+          </h1>
+
+          <p class="tagline">
+            Track. Understand. Take Charge.
+          </p>
+
+          <p class="hero-description">
+            HerHealth is a health awareness and tracking tool
+            designed to help you understand your menstrual health,
+            record symptoms, and explore reliable educational resources.
+          </p>
+
+          <a class="primary-btn" href="#features">
+            Explore HerHealth <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">🌸</div>
+      </section>
+
+      <!-- FEATURE OVERVIEW -->
+      <section id="features" aria-labelledby="features-title">
+        <h2 class="section-title" id="features-title">
+          Explore Your Health
+        </h2>
+
+        <div class="features">
+          <article class="feature-card" id="period-tracker">
+            <div class="feature-icon" aria-hidden="true">🌷</div>
+            <h3>Period Tracker</h3>
+            <p>Keep track of your menstrual cycle and related changes.</p>
+          </article>
+
+          <article class="feature-card" id="daily-symptoms">
+            <div class="feature-icon" aria-hidden="true">♡</div>
+            <h3>Daily Symptoms</h3>
+            <p>Record symptoms and notice patterns over time.</p>
+          </article>
+
+          <article class="feature-card" id="dashboard">
+            <div class="feature-icon" aria-hidden="true">✿</div>
+            <h3>Health Dashboard</h3>
+            <p>Explore your health information in one place.</p>
+          </article>
+
+          <article class="feature-card" id="resources">
+            <div class="feature-icon" aria-hidden="true">📖</div>
+            <h3>Health Resources</h3>
+            <p>Learn about menstrual health through educational content.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PRIVACY AND DISCLAIMER -->
+      <section class="bottom-grid" aria-label="Important information">
+
+        <div class="panel" id="profile">
+          <h2>♡ Welcome to Your Health Space</h2>
+
+          <div class="welcome-note">
+            <strong>Track. Understand. Take Charge.</strong>
+            <p>
+              Every person's health journey is different.
+              HerHealth aims to make menstrual health awareness
+              easier to understand and personal health tracking
+              easier to manage.
+            </p>
+          </div>
+
+          <div class="privacy">
+            <h3>🔒 Your Privacy Matters</h3>
+            <p>
+              Your data is safe and secure with us.
+              Your health information deserves care and privacy.
+            </p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Important to Know</h2>
+
+          <div class="disclaimer">
+            <h3>⚕ Medical Disclaimer</h3>
+            <p>
+              HerHealth supports tracking and educational awareness
+              on menstrual health. It doesn't replace professional
+              medical advice.
+            </p>
+            <p>
+              Consult a qualified healthcare professional for
+              medical concerns.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>HerHealth · Track. Understand. Take Charge.</p>
+        <p>Designed to support awareness, understanding, and informed choices.</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    // Stage 1: Highlight the selected sidebar navigation item.
+    // These links are visual navigation placeholders until
+    // the corresponding pages or routes are implemented.
+
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.forEach((item) => {
+          item.classList.remove("active");
+          item.removeAttribute("aria-current");
+        });
+
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+      });
+    });
+  </script>
+</body>
+</html>
