@@ -864,35 +864,35 @@
             </div>
 
             <nav class="nav-menu" aria-label="Main navigation">
-                <a class="nav-link active" href="http://127.0.0.1:5500/frontend/index.html#home" data-page="home"
+                <a class="nav-link active" href="#home" data-page="home"
                     aria-current="page">
                     <span class="icon">⌂</span> Home
                 </a>
-                <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#profile" data-page="profile">
+                <a class="nav-link" href="#profile" data-page="profile">
                     <span class="icon">♡</span> Profile
                 </a>
-                <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#period-tracker"
+                <a class="nav-link" href="#period-tracker"
                     data-page="period-tracker">
                     <span class="icon">▦</span> Period Tracker
                 </a>
-                <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#daily-symptoms"
+                <a class="nav-link" href="#daily-symptoms"
                     data-page="daily-symptoms">
                     <span class="icon">✧</span> Daily Symptoms
                 </a>
-                <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#dashboard" data-page="dashboard">
+                <a class="nav-link" href="#dashboard" data-page="dashboard">
                     <span class="icon">♡</span> Health Dashboard
                 </a>
-                <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#consultation-report"
+                <a class="nav-link" href="#consultation-report"
                     data-page="consultation-report">
                     <span class="icon">▤</span> Consultation Report
                 </a>
-                <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#resources" data-page="resources">
+                <a class="nav-link" href="#resources" data-page="resources">
                     <span class="icon">▱</span> Tips
                 </a>
-                <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#settings" data-page="settings">
+                <a class="nav-link" href="#settings" data-page="settings">
                     <span class="icon">⚙</span> Settings
                 </a>
-                <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#community" data-page="community">
+                <a class="nav-link" href="#community" data-page="community">
                     <span class="icon">♧</span> Community
                 </a>
             </nav>
@@ -910,6 +910,8 @@
                 <div class="topbar-right" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end;">
                     <span>Know your health. Feel empowered. ♡</span>
                     <button class="action-btn" type="button" id="open-auth-button">Log in / Create account</button>
+                    <span id="account-welcome" hidden aria-live="polite" style="font-weight:600;color:#c7477b;"></span>
+                    <button class="action-btn" type="button" id="logout-button" hidden>Log out</button>
                 </div>
             </header>
 
@@ -927,7 +929,7 @@
                             designed to help you understand your menstrual health,
                             record symptoms, and explore reliable educational resources.
                         </p>
-                        <a class="primary-btn" href="http://127.0.0.1:5500/frontend/index.html#features"
+                        <a class="primary-btn" href="#features"
                             id="explore-button">
                             Explore HerHealth <span aria-hidden="true">→</span>
                         </a>
@@ -1006,222 +1008,32 @@
             <!-- PROFILE -->
             <section class="stage2-page" id="profile-page" data-page-content="profile">
                 <h1 class="page-heading">Profile</h1>
-                <style>
-                    * {
-                        box-sizing: border-box;
-                    }
-
-                    body {
-                        margin: 0;
-                        padding: 30px 16px;
-                        font-family: Arial, sans-serif;
-                        background: #fff8fb;
-                        color:#e52d6d;
-                    }
-
-                    .container {
-                        max-width: 850px;
-                        margin: auto;
-                    }
-
-                    .card {
-                        background: white;
-                        padding: 22px;
-                        margin-bottom: 20px;
-                        border-radius: 18px;
-                        border: 1px solid #f2d5e1;
-                    }
-
-                    .profile-header {
-                        display: flex;
-                        align-items: center;
-                        gap: 18px;
-                        flex-wrap: wrap;
-                    }
-
-                    .avatar {
-                        width: 75px;
-                        height: 75px;
-                        border-radius: 50%;
-                        background: #f8e5ee;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 30px;
-                        overflow: hidden;
-                    }
-
-                    .avatar img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-
-                    h1,
-                    h2,
-                    h3 {
-                        margin-top: 0;
-                    }
-
-                    .muted {
-                        color: #79596a;
-                    }
-
-                    button,
-                    .action {
-                        border: none;
-                        background: #c7477b;
-                        color: white;
-                        padding: 11px 16px;
-                        border-radius: 10px;
-                        cursor: pointer;
-                        font-size: 14px;
-                        text-decoration: none;
-                        display: inline-block;
-                    }
-
-                    .grid {
-                        display: grid;
-                        grid-template-columns: repeat(2, minmax(0, 1fr));
-                        gap: 15px;
-                    }
-
-                    .health-card {
-                        padding: 20px;
-                        border: 1px solid #f2d5e1;
-                        border-radius: 14px;
-                    }
-
-                    .health-card p {
-                        color: #79596a;
-                    }
-
-                    .settings-link {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        gap: 12px;
-                    }
-
-                    .edit-form {
-                        display: none;
-                        margin-top: 20px;
-                    }
-
-                    input {
-                        display: block;
-                        width: 100%;
-                        padding: 11px;
-                        margin: 8px 0 14px;
-                        border: 1px solid #e8c6d6;
-                        border-radius: 8px;
-                    }
-
-                    @media (max-width: 520px) {
-                        .grid {
-                            grid-template-columns: 1fr;
-                        }
-                    }
-                </style>
-                </head>
-
-                <body>
-                    <main class="container">
-
-                        <!-- Profile Information -->
-                        <section class="card">
-                            <div class="profile-header">
-                                <div class="avatar" id="avatar">👤</div>
-
-                                <div style="flex: 1;">
-                                    <h1 id="displayName">Your Name</h1>
-                                    <p class="muted" id="displayEmail">your@email.com</p>
-                                    <button onclick="toggleEdit()">Edit Profile</button>
-                                </div>
-                            </div>
-
-                            <form class="edit-form" id="editForm">
-                                <label for="photo">Profile Photo (optional)</label>
-                                <input type="file" id="photo" accept="image/*">
-
-                                <label for="name">Name</label>
-                                <input id="name" type="text" placeholder="Enter your name" required>
-
-                                <label for="email">Email</label>
-                                <input id="email" type="email" placeholder="Enter your email" required>
-
-                                <button type="submit">Save Changes</button>
-                                <button type="button" onclick="toggleEdit()">Cancel</button>
-                            </form>
-                        </section>
-
-                        <!-- Health Overview -->
-                        <section class="card">
-                            <h2>Your Health at a Glance</h2>
-
-                            <div class="grid">
-                                <div class="health-card">
-                                    <h3>📋 Health Records</h3>
-                                    <p>View your saved health records.</p>
-                                    <a class="action" href="record.html">View Records</a>
-                                </div>
-
-                                <div class="health-card">
-                                    <h3>🌸 Period Tracker</h3>
-                                    <p>View your period tracking page.</p>
-                                    <a class="action" href="record.html#period-tracker">
-                                        View Tracker
-                                    </a>
-                                </div>
-
-                                <div class="health-card">
-                                    <h3>💗 Health Interests</h3>
-                                    <p>Explore your selected health interests.</p>
-                                    <a class="action" href="settings.html#health-interests">
-                                        View Interests
-                                    </a>
-                                </div>
-
-                                <div class="health-card">
-                                    <h3>📊 Health Dashboard</h3>
-                                    <p>View your health overview and insights.</p>
-                                    <a class="action" href="dashboard.html">View Dashboard</a>
-                                </div>
-                            </div>
-
-                            <!-- Settings -->
-                            <section class="card settings-link">
-                                <div>
-                                    <h2>⚙️ Settings</h2>
-                                    <p class="muted">Manage preferences, reminders and privacy.</p>
-                                </div>
-                                <a class="action" href="settings.html">Open Settings →</a>
-                            </section>
-
-                    </main>
-
-                    <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            let currentDisplayDate = new Date(2026, 9, 1); 
-
-                            const prevBtn = document.getElementById('calendar-prev');
-                            const nextBtn = document.getElementById('calendar-next');
-                            const monthLabel = document.getElementById('calendar-month-label');
-
-                            function changeMonth(direction) {
-                                currentDisplayDate.setMonth(currentDisplayDate.getMonth() + direction);
-                                
-                                const options = { month: 'long', year: 'numeric' };
-                                monthLabel.textContent = currentDisplayDate.toLocaleDateString('en-US', options);
-                                
-                                // Note: You will need your calendar grid rebuilding logic here
-                            }
-
-                            prevBtn.addEventListener('click', () => changeMonth(-1));
-                            nextBtn.addEventListener('click', () => changeMonth(1));
-                        });
-                    </script>
-                </body>
+                <p class="page-intro">View and update the details associated with your HerHealth account.</p>
+                <div class="page-section">
+                    <div class="profile-header" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:20px;">
+                        <div class="avatar" style="width:75px;height:75px;border-radius:50%;background:#f8e5ee;display:flex;align-items:center;justify-content:center;font-size:30px;">👤</div>
+                        <div><h2 id="profile-display-name">Your Name</h2><p class="muted" id="profile-display-email">your@email.com</p></div>
+                    </div>
+                    <h2>User Details</h2>
+                    <form id="profile-form">
+                        <div class="form-grid">
+                            <div class="field"><label for="profile-name">Name</label><input id="profile-name" type="text" maxlength="100" required></div>
+                            <div class="field"><label for="profile-age">Age</label><input id="profile-age" type="number" min="1" max="120" inputmode="numeric"></div>
+                            <div class="field"><label for="profile-email">Email</label><input id="profile-email" type="email" maxlength="255"></div>
+                            <div class="field"><label for="profile-pronouns">Preferred name / pronouns (optional)</label><input id="profile-pronouns" type="text" maxlength="50"></div>
+                        </div>
+                        <div class="action-row"><button class="action-btn primary" type="submit">Save Changes</button><span id="profile-status" class="field-help" role="status" aria-live="polite"></span></div>
+                    </form>
+                </div>
+                <div class="page-section">
+                    <h2>Your Health at a Glance</h2>
+                    <div class="features">
+                        <article class="feature-card" data-open-page="period-tracker" tabindex="0" role="button"><div class="feature-icon">🌷</div><h3>Period Tracker</h3><p>View your period records.</p></article>
+                        <article class="feature-card" data-open-page="daily-symptoms" tabindex="0" role="button"><div class="feature-icon">♡</div><h3>Daily Symptoms</h3><p>View your symptom entries.</p></article>
+                        <article class="feature-card" data-open-page="dashboard" tabindex="0" role="button"><div class="feature-icon">✿</div><h3>Health Dashboard</h3><p>View your health overview and insights.</p></article>
+                        <article class="feature-card" data-open-page="settings" tabindex="0" role="button"><div class="feature-icon">⚙</div><h3>Settings</h3><p>Manage local app preferences.</p></article>
+                    </div>
+                </div>
             </section>
 
             <!-- PERIOD TRACKER -->
@@ -1723,7 +1535,7 @@
                         <div class="field"><label for="register-username">Username</label><input id="register-username" type="text" autocomplete="username" required placeholder="Choose a username"></div>
                         <div class="field" style="margin-top:14px;"><label for="register-password">Create password</label><input id="register-password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></div>
                         <div class="field" style="margin-top:14px;"><label for="register-email">Email address (optional)</label><input id="register-email" type="email" autocomplete="email" placeholder="Enter your email for password recovery"><p class="field-help" style="margin-top:6px;">Email is optional, but you'll need a registered email address to reset a forgotten password.</p></div>
-                        <p class="field-help" style="margin-top:10px;">Use a unique password. HerHealth authentication and secure account storage will be connected to the backend before accounts are enabled.</p>
+                        <p class="field-help" style="margin-top:10px;">Use a unique password. Your account will be stored by the HerHealth backend.</p>
                         <div class="action-row"><button class="action-btn primary" type="submit">Create account</button></div>
                     </form>
                     <form id="forgot-password-form" hidden>
@@ -1733,7 +1545,7 @@
                         <div class="field" style="margin-top:14px;"><label for="recovery-email">Registered email address</label><input id="recovery-email" type="email" autocomplete="email" placeholder="Enter your registered email"></div>
                         <div class="action-row"><button class="action-btn primary" type="submit">Continue</button><button class="action-btn" type="button" id="back-to-login-button">Back to login</button></div>
                     </form>
-                    <p id="auth-status" class="field-help" role="status" aria-live="polite">Account access is not connected yet. You can continue exploring Home and Tips.</p>
+                    <p id="auth-status" class="field-help" role="status" aria-live="polite">Log in or create an account to save personal data. You can explore the app without an account.</p>
                     <div class="action-row"><button class="action-btn" type="button" id="auth-home-button">Back to Home</button></div>
                 </div>
             </section>
@@ -1774,51 +1586,33 @@
     </div>
 
     <script>
-        /*
-          HerHealth Stage 2 prototype.
-          Frontend authentication entry screen is a UI only at this stage.
-          Login/registration must be connected to FastAPI before authentication is enabled.
-          Records are stored in this browser only; localStorage is not secure storage
-          for sensitive medical information or real multi-user accounts.
-        */
+        /* HerHealth frontend connected to the FastAPI backend. Access tokens are kept in sessionStorage. */
         const STORAGE_KEY = "herhealth_stage2_data_v1";
+        const API_BASE = "http://127.0.0.1:8000";
+        const TOKEN_KEY = "herhealth_access_token";
+        const USER_KEY = "herhealth_username";
         const emptyData = () => ({ profile: {}, periods: [], symptoms: [], posts: [], reportQuestions: "" });
-        let appData = loadData();
+        let appData = emptyData();
+        let accessToken = sessionStorage.getItem(TOKEN_KEY) || "";
+        let currentUsername = sessionStorage.getItem(USER_KEY) || "";
+        let isAuthenticated = Boolean(accessToken);
         let calendarDate = new Date();
         let selectedCalendarDate = "";
 
-        
         function loadData() {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-
-                if (!saved) return emptyData();
-
-                const parsed = JSON.parse(saved);
-
-                return {
-                    profile: parsed.profile || {},
-                    periods: [],
-                    symptoms: [],
-                    posts: [],
-                    reportQuestions: parsed.reportQuestions || ""
-                };
-            } catch (error) {
-                return emptyData();
-            }
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || emptyData(); }
+            catch (error) { return emptyData(); }
         }
-
         function saveData() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
             renderAll();
+            if (isAuthenticated) syncRecords().catch(error => showStatus("auth-status", error.message || "Could not sync records."));
         }
         function makeId() {
             return (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
         }
         function escapeHTML(value) {
-            return String(value ?? "").replace(/[&<>"']/g, ch => ({
-                "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-            }[ch]));
+            return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
         }
         function formatDate(dateString) {
             if (!dateString) return "Not entered";
@@ -1826,26 +1620,56 @@
             return Number.isNaN(date.getTime()) ? dateString : date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
         }
         function dateDiffDays(a, b) {
-            const first = new Date(a + "T12:00:00");
-            const second = new Date(b + "T12:00:00");
+            const first = new Date(a + "T12:00:00"); const second = new Date(b + "T12:00:00");
             return Math.round((second - first) / 86400000);
         }
-        // Every feature page is publicly viewable. Authentication is requested only
-        // when a visitor tries to enter or submit personal data.
-        let isAuthenticated = false; // Will be set only after real backend authentication is implemented.
-
+        function showStatus(id, message) { const node = document.getElementById(id); if (node) node.textContent = message; }
+        async function apiRequest(path, options = {}) {
+            const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
+            if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
+            let response;
+            try { response = await fetch(`${API_BASE}${path}`, { ...options, headers }); }
+            catch (error) { throw new Error("Cannot reach the HerHealth backend. Start FastAPI on http://127.0.0.1:8000 and try again."); }
+            const body = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(body.detail || body.message || `Request failed (${response.status})`);
+            return body;
+        }
+        async function syncRecords() {
+            await apiRequest("/records/sync", { method: "PUT", body: JSON.stringify({ periods: appData.periods, symptoms: appData.symptoms }) });
+        }
+        async function loadAccountData() {
+            const [profile, records] = await Promise.all([apiRequest("/profile"), apiRequest("/records")]);
+            appData.profile = profile || {};
+            appData.periods = Array.isArray(records.periods) ? records.periods : [];
+            appData.symptoms = Array.isArray(records.symptoms) ? records.symptoms : [];
+            appData.posts = [];
+            appData.reportQuestions = "";
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+            fillProfileForm(); renderAll();
+        }
+        function updateAuthUI() {
+            const button = document.getElementById("open-auth-button");
+            const welcome = document.getElementById("account-welcome");
+            const logout = document.getElementById("logout-button");
+            button.hidden = isAuthenticated;
+            welcome.hidden = !isAuthenticated;
+            logout.hidden = !isAuthenticated;
+            welcome.textContent = isAuthenticated ? `Welcome, ${currentUsername}!` : "";
+        }
+        document.getElementById("logout-button").addEventListener("click", () => {
+            accessToken = ""; currentUsername = ""; isAuthenticated = false;
+            sessionStorage.removeItem(TOKEN_KEY); sessionStorage.removeItem(USER_KEY);
+            appData = emptyData(); updateAuthUI(); renderAll(); showPage("home");
+            showStatus("auth-status", "You have logged out. Your account data remains saved in the database.");
+        });
         function showPage(page) {
             const validPages = ["home", "profile", "period-tracker", "daily-symptoms", "dashboard", "consultation-report", "resources", "settings", "community", "auth"];
             if (!validPages.includes(page)) page = "home";
             document.getElementById("home-view").style.display = page === "home" ? "block" : "none";
-            document.querySelectorAll("[data-page-content]").forEach(section => {
-                section.classList.toggle("active-page", section.dataset.pageContent === page);
-            });
+            document.querySelectorAll("[data-page-content]").forEach(section => section.classList.toggle("active-page", section.dataset.pageContent === page));
             document.querySelectorAll(".nav-link").forEach(link => {
-                const active = link.dataset.page === page;
-                link.classList.toggle("active", active);
-                if (active) link.setAttribute("aria-current", "page");
-                else link.removeAttribute("aria-current");
+                const active = link.dataset.page === page; link.classList.toggle("active", active);
+                if (active) link.setAttribute("aria-current", "page"); else link.removeAttribute("aria-current");
             });
             if (page === "dashboard") renderDashboard();
             if (page === "consultation-report") renderReport();
@@ -1855,58 +1679,37 @@
             window.scrollTo({ top: 0, behavior: "auto" });
             if (location.hash !== "#" + page) history.replaceState(null, "", "#" + page);
         }
-
-        document.querySelectorAll(".nav-link").forEach(link => {
-            link.addEventListener("click", event => {
-                event.preventDefault();
-                showPage(link.dataset.page);
-            });
-        });
+        document.querySelectorAll(".nav-link").forEach(link => link.addEventListener("click", event => { event.preventDefault(); showPage(link.dataset.page); }));
         document.getElementById("open-auth-button").addEventListener("click", () => {
-            document.getElementById("auth-status").textContent = "Log in or create an account to enter and save personal data. You can continue exploring every feature without an account.";
+            showStatus("auth-status", "Log in or create an account to enter and save personal data. You can explore the app without an account.");
             showPage("auth");
         });
         document.getElementById("auth-home-button").addEventListener("click", () => showPage("home"));
-
         function showDataEntryAuthNotice() {
             setAuthMode("login");
-            const status = document.getElementById("auth-status");
-            if (status) status.textContent = "To enter or save data in HerHealth, please log in or create an account. You can return to any feature and continue exploring without an account.";
+            showStatus("auth-status", "To enter or save personal data, please log in or create an account. You can still explore the features without an account.");
             showPage("auth");
         }
-
-        // Gate data entry, not feature visibility. Visitors can open every page,
-        // read tips, and inspect the dashboards/reports, but cannot enter personal
-        // information until real authentication is connected and implemented.
         document.addEventListener("click", event => {
             if (isAuthenticated) return;
             const field = event.target.closest("[data-page-content]:not([data-page-content='auth']) input, [data-page-content]:not([data-page-content='auth']) textarea, [data-page-content]:not([data-page-content='auth']) select, #home-view input, #home-view textarea, #home-view select");
             if (!field || field.disabled || field.readOnly) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            showDataEntryAuthNotice();
+            event.preventDefault(); event.stopImmediatePropagation(); showDataEntryAuthNotice();
         }, true);
-
         document.addEventListener("focusin", event => {
             if (isAuthenticated) return;
             const field = event.target.closest("[data-page-content]:not([data-page-content='auth']) input, [data-page-content]:not([data-page-content='auth']) textarea, [data-page-content]:not([data-page-content='auth']) select, #home-view input, #home-view textarea, #home-view select");
             if (!field || field.disabled || field.readOnly) return;
-            field.blur();
-            showDataEntryAuthNotice();
+            field.blur(); showDataEntryAuthNotice();
         }, true);
-
         document.addEventListener("submit", event => {
             if (isAuthenticated) return;
             const form = event.target;
             if (!(form instanceof HTMLFormElement) || ["login-form", "register-form", "forgot-password-form"].includes(form.id)) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            showDataEntryAuthNotice();
+            event.preventDefault(); event.stopImmediatePropagation(); showDataEntryAuthNotice();
         }, true);
-
         function setAuthMode(mode) {
-            const isLogin = mode === "login";
-            const isRegister = mode === "register";
+            const isLogin = mode === "login", isRegister = mode === "register";
             document.getElementById("login-form").hidden = !isLogin;
             document.getElementById("register-form").hidden = !isRegister;
             document.getElementById("forgot-password-form").hidden = true;
@@ -1914,36 +1717,38 @@
             document.getElementById("show-register-button").classList.toggle("primary", isRegister);
             document.getElementById("show-login-button").setAttribute("aria-pressed", String(isLogin));
             document.getElementById("show-register-button").setAttribute("aria-pressed", String(isRegister));
-            document.getElementById("auth-status").textContent = "Account access is not connected yet. You can continue exploring every feature without an account.";
         }
         document.getElementById("show-login-button").addEventListener("click", () => setAuthMode("login"));
         document.getElementById("show-register-button").addEventListener("click", () => setAuthMode("register"));
         document.getElementById("show-forgot-password-button").addEventListener("click", () => {
-            document.getElementById("login-form").hidden = true;
-            document.getElementById("register-form").hidden = true;
+            document.getElementById("login-form").hidden = true; document.getElementById("register-form").hidden = true;
             document.getElementById("forgot-password-form").hidden = false;
-            document.getElementById("auth-status").textContent = "To reset a forgotten password, a registered email address is essential.";
+            showStatus("auth-status", "Password recovery is not implemented in the current backend.");
         });
         document.getElementById("back-to-login-button").addEventListener("click", () => setAuthMode("login"));
-        document.getElementById("login-form").addEventListener("submit", event => {
-            event.preventDefault();
-            document.getElementById("auth-status").textContent = "Login is not active yet. We need to connect this form to the secure FastAPI backend before it can sign you in.";
+        async function finishAuthentication(result) {
+            accessToken = result.access_token; currentUsername = result.username; isAuthenticated = true;
+            sessionStorage.setItem(TOKEN_KEY, accessToken); sessionStorage.setItem(USER_KEY, currentUsername);
+            updateAuthUI();
+            await loadAccountData();
+            showStatus("auth-status", `Welcome to HerHealth, ${currentUsername}! Your account is connected. You can now enter and save your data.`);
+            showPage("home");
+        }
+        document.getElementById("login-form").addEventListener("submit", async event => {
+            event.preventDefault(); showStatus("auth-status", "Signing in…");
+            try {
+                const result = await apiRequest("/auth/login", { method: "POST", body: JSON.stringify({ username: document.getElementById("login-username").value.trim(), password: document.getElementById("login-password").value }) });
+                await finishAuthentication(result);
+            } catch (error) { showStatus("auth-status", error.message); }
         });
-        document.getElementById("register-form").addEventListener("submit", event => {
-            event.preventDefault();
-            document.getElementById("auth-status").textContent = "Account creation is not active yet. We need to connect registration to the secure FastAPI backend before accounts can be created.";
+        document.getElementById("register-form").addEventListener("submit", async event => {
+            event.preventDefault(); showStatus("auth-status", "Creating your account…");
+            try {
+                const result = await apiRequest("/auth/register", { method: "POST", body: JSON.stringify({ username: document.getElementById("register-username").value.trim(), password: document.getElementById("register-password").value, email: document.getElementById("register-email").value.trim() || null }) });
+                await finishAuthentication(result);
+            } catch (error) { showStatus("auth-status", error.message); }
         });
-        document.getElementById("forgot-password-form").addEventListener("submit", event => {
-            event.preventDefault();
-            const email = document.getElementById("recovery-email").value.trim();
-            const status = document.getElementById("auth-status");
-            if (!email) {
-                status.textContent = "To reset your password, a registered email address is essential. If you did not add an email when creating your account, password recovery by email will not be available.";
-                document.getElementById("recovery-email").focus();
-                return;
-            }
-            status.textContent = "Password recovery is not active yet. Once connected to the secure FastAPI backend, HerHealth can verify your registered email and send a recovery link or code.";
-        });
+        document.getElementById("forgot-password-form").addEventListener("submit", event => { event.preventDefault(); showStatus("auth-status", "Password recovery is not available yet. Please use your existing password to log in."); });
 
         document.querySelectorAll("[data-open-page]").forEach(element => {
             element.addEventListener("click", () => showPage(element.dataset.openPage));
@@ -1965,26 +1770,33 @@
 
         /* Profile */
         function fillProfileForm() {
-            if (!document.getElementById("profile-name")) return;
-            document.getElementById("profile-name").value = appData.profile.name || "";
-            document.getElementById("profile-age").value = appData.profile.age || "";
-            document.getElementById("profile-email").value = appData.profile.email || "";
-            document.getElementById("profile-pronouns").value = appData.profile.preferred || "";
+            const profile = appData.profile || {};
+            const name = document.getElementById("profile-name");
+            if (!name) return;
+            name.value = profile.name || currentUsername || "";
+            document.getElementById("profile-age").value = profile.age ?? "";
+            document.getElementById("profile-email").value = profile.email || "";
+            document.getElementById("profile-pronouns").value = profile.preferred || "";
+            document.getElementById("profile-display-name").textContent = profile.name || currentUsername || "Your Name";
+            document.getElementById("profile-display-email").textContent = profile.email || "No email added";
         }
         const profileForm = document.getElementById("profile-form");
-        if (profileForm) {
-            profileForm.addEventListener("submit", event => {
-                event.preventDefault();
-                appData.profile = {
-                    name: document.getElementById("profile-name").value.trim(),
-                    age: document.getElementById("profile-age").value,
-                    email: document.getElementById("profile-email").value.trim(),
-                    preferred: document.getElementById("profile-pronouns").value.trim()
-                };
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
-                document.getElementById("profile-status").textContent = "Profile saved in this browser.";
-            });
-        }
+        if (profileForm) profileForm.addEventListener("submit", async event => {
+            event.preventDefault();
+            if (!isAuthenticated) { showDataEntryAuthNotice(); return; }
+            const ageText = document.getElementById("profile-age").value;
+            const payload = {
+                name: document.getElementById("profile-name").value.trim(),
+                age: ageText ? Number(ageText) : null,
+                email: document.getElementById("profile-email").value.trim() || null,
+                preferred: document.getElementById("profile-pronouns").value.trim() || null
+            };
+            try {
+                const result = await apiRequest("/profile", { method: "PUT", body: JSON.stringify(payload) });
+                appData.profile = result.profile; localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+                fillProfileForm(); showStatus("profile-status", "Profile updated successfully.");
+            } catch (error) { showStatus("profile-status", error.message); }
+        });
 
         /* Period records and calendar */
         function overlapsPeriod(dateString, period) {
@@ -2451,49 +2263,22 @@ Pain intensity: ${escapeHTML(item.pain)} · Daily-life impact: ${escapeHTML(item
 
         /* Load the requested page from the URL hash; otherwise show the original homepage. */
         const initialPage = location.hash.replace("#", "");
+        updateAuthUI();
         showPage(initialPage || "home");
         fillProfileForm();
         renderAll();
-    </script>
-    <!-- Code injected by live-server -->
-    <script>
-        // <![CDATA[  <-- For SVG support
-        if ('WebSocket' in window) {
-            (function () {
-                function refreshCSS() {
-                    var sheets = [].slice.call(document.getElementsByTagName("link"));
-                    var head = document.getElementsByTagName("head")[0];
-                    for (var i = 0; i < sheets.length; ++i) {
-                        var elem = sheets[i];
-                        var parent = elem.parentElement || head;
-                        parent.removeChild(elem);
-                        var rel = elem.rel;
-                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-                        }
-                        parent.appendChild(elem);
-                    }
-                }
-                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-                var address = protocol + window.location.host + window.location.pathname + '/ws';
-                var socket = new WebSocket(address);
-                socket.onmessage = function (msg) {
-                    if (msg.data == 'reload') window.location.reload();
-                    else if (msg.data == 'refreshcss') refreshCSS();
-                };
-                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-                    console.log('Live reload enabled.');
-                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-                }
-            })();
+        if (isAuthenticated) {
+            loadAccountData().catch(error => {
+                accessToken = ""; currentUsername = ""; isAuthenticated = false;
+                sessionStorage.removeItem(TOKEN_KEY); sessionStorage.removeItem(USER_KEY); updateAuthUI();
+                showStatus("auth-status", "Your session expired or the backend is unavailable. Please log in again.");
+            });
+        } else {
+            // Do not expose previously entered browser-local data as an authenticated account.
+            appData = emptyData();
+            renderAll();
         }
-        else {
-            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-        }
-        // ]]>
     </script>
 
 </body>
-
 </html>
