@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -907,7 +908,8 @@
         <main class="main">
             <header class="topbar">
                 <span class="topbar-label">Your personal health space</span>
-                <div class="topbar-right" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end;">
+                <div class="topbar-right"
+                    style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end;">
                     <span>Know your health. Feel empowered. ♡</span>
                     <button class="action-btn" type="button" id="open-auth-button">Log in / Create account</button>
                     <span id="account-welcome" hidden aria-live="polite" style="font-weight:600;color:#c7477b;"></span>
@@ -1008,6 +1010,7 @@
             <!-- PROFILE -->
             <section class="stage2-page" id="profile-page" data-page-content="profile">
                 <h1 class="page-heading">Profile</h1>
+<<<<<<< HEAD
                 <p class="page-intro">View and update the details associated with your HerHealth account.</p>
                 <div class="page-section">
                     <div class="profile-header" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:20px;">
@@ -1034,6 +1037,224 @@
                         <article class="feature-card" data-open-page="settings" tabindex="0" role="button"><div class="feature-icon">⚙</div><h3>Settings</h3><p>Manage local app preferences.</p></article>
                     </div>
                 </div>
+=======
+                <style>
+                    * {
+                        box-sizing: border-box;
+                    }
+
+                    body {
+                        margin: 0;
+                        padding: 30px 16px;
+                        font-family: Arial, sans-serif;
+                        background: #fff8fb;
+                        color: #e52d6d;
+                    }
+
+                    .container {
+                        max-width: 850px;
+                        margin: auto;
+                    }
+
+                    .card {
+                        background: white;
+                        padding: 22px;
+                        margin-bottom: 20px;
+                        border-radius: 18px;
+                        border: 1px solid #f2d5e1;
+                    }
+
+                    .profile-header {
+                        display: flex;
+                        align-items: center;
+                        gap: 18px;
+                        flex-wrap: wrap;
+                    }
+
+                    .avatar {
+                        width: 75px;
+                        height: 75px;
+                        border-radius: 50%;
+                        background: #f8e5ee;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 30px;
+                        overflow: hidden;
+                    }
+
+                    .avatar img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                    h1,
+                    h2,
+                    h3 {
+                        margin-top: 0;
+                    }
+
+                    .muted {
+                        color: #79596a;
+                    }
+
+                    button,
+                    .action {
+                        border: none;
+                        background: #c7477b;
+                        color: white;
+                        padding: 11px 16px;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        text-decoration: none;
+                        display: inline-block;
+                    }
+
+                    .grid {
+                        display: grid;
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                        gap: 15px;
+                    }
+
+                    .health-card {
+                        padding: 20px;
+                        border: 1px solid #f2d5e1;
+                        border-radius: 14px;
+                    }
+
+                    .health-card p {
+                        color: #79596a;
+                    }
+
+                    .settings-link {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 12px;
+                    }
+
+                    .edit-form {
+                        display: none;
+                        margin-top: 20px;
+                    }
+
+                    input {
+                        display: block;
+                        width: 100%;
+                        padding: 11px;
+                        margin: 8px 0 14px;
+                        border: 1px solid #e8c6d6;
+                        border-radius: 8px;
+                    }
+
+                    @media (max-width: 520px) {
+                        .grid {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                </style>
+                </head>
+
+                <body>
+                    <main class="container">
+
+                        <!-- Profile Information -->
+                        <section class="card">
+                            <div class="profile-header">
+                                <div class="avatar" id="avatar">👤</div>
+
+                                <div style="flex: 1;">
+                                    <h1 id="displayName">Your Name</h1>
+                                    <p class="muted" id="displayEmail">your@email.com</p>
+                                    <button onclick="toggleEdit()">Edit Profile</button>
+                                </div>
+                            </div>
+
+                            <form class="edit-form" id="editForm">
+                                <label for="photo">Profile Photo (optional)</label>
+                                <input type="file" id="photo" accept="image/*">
+
+                                <label for="name">Name</label>
+                                <input id="name" type="text" placeholder="Enter your name" required>
+
+                                <label for="email">Email</label>
+                                <input id="email" type="email" placeholder="Enter your email" required>
+
+                                <button type="submit">Save Changes</button>
+                                <button type="button" onclick="toggleEdit()">Cancel</button>
+                            </form>
+                        </section>
+
+                        <!-- Health Overview -->
+                        <section class="card">
+                            <h2>Your Health at a Glance</h2>
+
+                            <div class="grid">
+                                <div class="health-card">
+                                    <h3>📋 Health Records</h3>
+                                    <p>View your saved health records.</p>
+                                    <a class="action" href="record.html">View Records</a>
+                                </div>
+
+                                <div class="health-card">
+                                    <h3>🌸 Period Tracker</h3>
+                                    <p>View your period tracking page.</p>
+                                    <a class="action" href="record.html#period-tracker">
+                                        View Tracker
+                                    </a>
+                                </div>
+
+                                <div class="health-card">
+                                    <h3>💗 Health Interests</h3>
+                                    <p>Explore your selected health interests.</p>
+                                    <a class="action" href="settings.html#health-interests">
+                                        View Interests
+                                    </a>
+                                </div>
+
+                                <div class="health-card">
+                                    <h3>📊 Health Dashboard</h3>
+                                    <p>View your health overview and insights.</p>
+                                    <a class="action" href="dashboard.html">View Dashboard</a>
+                                </div>
+                            </div>
+
+                            <!-- Settings -->
+                            <section class="card settings-link">
+                                <div>
+                                    <h2>⚙️ Settings</h2>
+                                    <p class="muted">Manage preferences, reminders and privacy.</p>
+                                </div>
+                                <a class="action" href="settings.html">Open Settings →</a>
+                            </section>
+
+                    </main>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            let currentDisplayDate = new Date(2026, 9, 1);
+
+                            const prevBtn = document.getElementById('calendar-prev');
+                            const nextBtn = document.getElementById('calendar-next');
+                            const monthLabel = document.getElementById('calendar-month-label');
+
+                            function changeMonth(direction) {
+                                currentDisplayDate.setMonth(currentDisplayDate.getMonth() + direction);
+
+                                const options = { month: 'long', year: 'numeric' };
+                                monthLabel.textContent = currentDisplayDate.toLocaleDateString('en-US', options);
+
+                                // Note: You will need your calendar grid rebuilding logic here
+                            }
+
+                            prevBtn.addEventListener('click', () => changeMonth(-1));
+                            nextBtn.addEventListener('click', () => changeMonth(1));
+                        });
+                    </script>
+                </body>
+>>>>>>> 889abf9 (backend)
             </section>
 
             <!-- PERIOD TRACKER -->
@@ -1160,22 +1381,36 @@
                             <div class="field full">
                                 <label>Symptoms (optional)</label>
                                 <div class="form-grid">
-                                    <label style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
-                                        <input type="checkbox" name="period-symptom" value="Cramps" style="width:auto; padding:0; margin-right:8px; accent-color:#e83e78;"> Cramps
+                                    <label
+                                        style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
+                                        <input type="checkbox" name="period-symptom" value="Cramps"
+                                            style="width:auto; padding:0; margin-right:8px; accent-color:#e83e78;">
+                                        Cramps
                                     </label>
-                                    <label style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
-                                        <input type="checkbox" name="period-symptom" value="Headaches" style="width:auto; padding:0; margin-right:8px; accent-color:#e83e78;"> Headaches
+                                    <label
+                                        style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
+                                        <input type="checkbox" name="period-symptom" value="Headaches"
+                                            style="width:auto; padding:0; margin-right:8px; accent-color:#e83e78;">
+                                        Headaches
                                     </label>
-                                    <label style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
-                                        <input type="checkbox" name="period-symptom" value="Mood changes" style="width:auto; padding:0; margin-right:8px; accent-color:#e83e78;"> Mood changes
+                                    <label
+                                        style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
+                                        <input type="checkbox" name="period-symptom" value="Mood changes"
+                                            style="width:auto; padding:0; margin-right:8px; accent-color:#e83e78;"> Mood
+                                        changes
                                     </label>
-                                    <label style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
-                                        <input type="checkbox" name="period-symptom" value="Fatigue" style="width:auto; padding:0; margin-right:8px; accent-color:#e83e78;"> Fatigue
+                                    <label
+                                        style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
+                                        <input type="checkbox" name="period-symptom" value="Fatigue"
+                                            style="width:auto; padding:0; margin-right:8px; accent-color:#e83e78;">
+                                        Fatigue
                                     </label>
                                 </div>
                             </div>
-                            <div class="field full"><label for="period-symptom-note">Additional symptom notes (optional)</label>
-                                <textarea id="period-symptom-note" placeholder="Describe any symptoms or other experiences..."></textarea>
+                            <div class="field full"><label for="period-symptom-note">Additional symptom notes
+                                    (optional)</label>
+                                <textarea id="period-symptom-note"
+                                    placeholder="Describe any symptoms or other experiences..."></textarea>
                             </div>
                         </div>
                         <div class="action-row">
@@ -1304,7 +1539,10 @@
                 <div class="page-section no-print">
                     <h2>Questions for your healthcare professional</h2>
                     <div class="field full"><label>Suggested questions based on your saved records</label>
-                        <div id="suggested-questions" class="record-list"><p class="muted">Suggestions will appear when relevant records are available. You can always write your own questions below.</p></div>
+                        <div id="suggested-questions" class="record-list">
+                            <p class="muted">Suggestions will appear when relevant records are available. You can always
+                                write your own questions below.</p>
+                        </div>
                     </div>
                     <div class="field"><label for="report-questions">Your questions (one per line)</label><textarea
                             id="report-questions"
@@ -1321,34 +1559,55 @@
             <!-- RESOURCES -->
             <section class="stage2-page" id="resources-page" data-page-content="resources">
                 <h1 class="page-heading">Tips</h1>
-                <p class="page-intro">Explore general educational information about menstrual health and common conditions.</p>
+                <p class="page-intro">Explore general educational information about menstrual health and common
+                    conditions.</p>
                 <div class="page-section">
                     <h2>Understanding the Menstrual Cycle</h2>
-                    <p>A menstrual cycle is counted from the first day of one period to the first day of the next period. Bleeding, cycle timing, and symptoms can vary. Tracking dates over several cycles can help you describe your own pattern, but estimates are not guarantees.</p>
+                    <p>A menstrual cycle is counted from the first day of one period to the first day of the next
+                        period. Bleeding, cycle timing, and symptoms can vary. Tracking dates over several cycles can
+                        help you describe your own pattern, but estimates are not guarantees.</p>
                 </div>
                 <div class="page-section">
                     <h2>Common Period Symptoms</h2>
-                    <p>Cramps, bloating, headaches, breast tenderness, tiredness, and mood changes can occur around menstruation. Their intensity and timing differ between people. If symptoms repeatedly disrupt school, work, sleep, or daily activities, discuss them with a qualified healthcare professional.</p>
+                    <p>Cramps, bloating, headaches, breast tenderness, tiredness, and mood changes can occur around
+                        menstruation. Their intensity and timing differ between people. If symptoms repeatedly disrupt
+                        school, work, sleep, or daily activities, discuss them with a qualified healthcare professional.
+                    </p>
                 </div>
                 <div class="page-section">
                     <h2>PCOS (Polycystic Ovary Syndrome)</h2>
-                    <p>PCOS is a hormonal condition that can affect ovulation and may be associated with irregular or missed periods, acne, increased facial or body hair, or changes in how the body uses insulin. Experiences vary, and these signs can have other causes. PCOS cannot be confirmed from a symptom list or period tracker; assessment by a qualified healthcare professional is needed.</p>
+                    <p>PCOS is a hormonal condition that can affect ovulation and may be associated with irregular or
+                        missed periods, acne, increased facial or body hair, or changes in how the body uses insulin.
+                        Experiences vary, and these signs can have other causes. PCOS cannot be confirmed from a symptom
+                        list or period tracker; assessment by a qualified healthcare professional is needed.</p>
                 </div>
                 <div class="page-section">
                     <h2>Endometriosis</h2>
-                    <p>Endometriosis is a condition in which tissue similar to the lining of the uterus grows outside the uterus. Possible symptoms include significant period pain, ongoing pelvic pain, pain during bowel movements or urination around periods, and difficulty becoming pregnant. Some people have few symptoms. Symptoms alone do not confirm endometriosis, so seek professional assessment for persistent or disruptive pain.</p>
+                    <p>Endometriosis is a condition in which tissue similar to the lining of the uterus grows outside
+                        the uterus. Possible symptoms include significant period pain, ongoing pelvic pain, pain during
+                        bowel movements or urination around periods, and difficulty becoming pregnant. Some people have
+                        few symptoms. Symptoms alone do not confirm endometriosis, so seek professional assessment for
+                        persistent or disruptive pain.</p>
                 </div>
                 <div class="page-section">
                     <h2>PMS and PMDD</h2>
-                    <p>Premenstrual syndrome (PMS) describes physical or emotional symptoms that occur before a period and improve after it begins. Premenstrual dysphoric disorder (PMDD) is a more severe condition that can substantially affect mood and daily life. Recording when symptoms start and ease can help a healthcare professional assess them.</p>
+                    <p>Premenstrual syndrome (PMS) describes physical or emotional symptoms that occur before a period
+                        and improve after it begins. Premenstrual dysphoric disorder (PMDD) is a more severe condition
+                        that can substantially affect mood and daily life. Recording when symptoms start and ease can
+                        help a healthcare professional assess them.</p>
                 </div>
                 <div class="page-section">
                     <h2>When to seek medical advice</h2>
-                    <p>Consider speaking with a qualified healthcare professional if periods become persistently irregular, bleeding is unusually heavy, pain is severe or worsening, symptoms affect daily activities, or you have concerns about your cycle. Seek urgent medical care for sudden severe pain, fainting, or heavy bleeding with weakness or dizziness, especially if you may be pregnant.</p>
+                    <p>Consider speaking with a qualified healthcare professional if periods become persistently
+                        irregular, bleeding is unusually heavy, pain is severe or worsening, symptoms affect daily
+                        activities, or you have concerns about your cycle. Seek urgent medical care for sudden severe
+                        pain, fainting, or heavy bleeding with weakness or dizziness, especially if you may be pregnant.
+                    </p>
                 </div>
                 <div class="page-section">
                     <h2>Using HerHealth</h2>
-                    <p>Record what you experience and, when possible, note when symptoms begin and ease. Reviewing entries over time can help you describe changes and recurring patterns.</p>
+                    <p>Record what you experience and, when possible, note when symptoms begin and ease. Reviewing
+                        entries over time can help you describe changes and recurring patterns.</p>
                 </div>
             </section>
 
@@ -1405,7 +1664,8 @@
                             margin: 20px auto;
                             color: #49333e;
                             font-family: Arial, sans-serif;
-                            text-align: left; /* Forces left alignment overriding global styles */
+                            text-align: left;
+                            /* Forces left alignment overriding global styles */
                         }
 
                         .privacy-settings h2 {
@@ -1517,36 +1777,77 @@
             <!-- OPTIONAL AUTHENTICATION ENTRY: public pages remain accessible without an account -->
             <section class="stage2-page" id="auth-page" data-page-content="auth">
                 <h1 class="page-heading">Your HerHealth Account</h1>
-                <p class="page-intro">Explore every feature without an account. To enter or save personal data, log in or create an account.</p>
+                <p class="page-intro">Explore every feature without an account. To enter or save personal data, log in
+                    or create an account.</p>
                 <div class="page-section" style="max-width:650px;margin:0 auto 20px;">
                     <div class="action-row" style="margin-top:0;margin-bottom:18px;">
-                        <button class="action-btn primary" type="button" id="show-login-button" aria-pressed="true">Log in</button>
-                        <button class="action-btn" type="button" id="show-register-button" aria-pressed="false">Create account</button>
+                        <button class="action-btn primary" type="button" id="show-login-button" aria-pressed="true">Log
+                            in</button>
+                        <button class="action-btn" type="button" id="show-register-button" aria-pressed="false">Create
+                            account</button>
                     </div>
                     <form id="login-form">
                         <h2>Welcome back</h2>
-                        <div class="field"><label for="login-username">Username</label><input id="login-username" type="text" autocomplete="username" required placeholder="Enter your username"></div>
-                        <div class="field" style="margin-top:14px;"><label for="login-password">Password</label><input id="login-password" type="password" autocomplete="current-password" required placeholder="Enter your password"></div>
+                        <div class="field"><label for="login-username">Username</label><input id="login-username"
+                                type="text" autocomplete="username" required placeholder="Enter your username"></div>
+                        <div class="field" style="margin-top:14px;"><label for="login-password">Password</label><input
+                                id="login-password" type="password" autocomplete="current-password" required
+                                placeholder="Enter your password"></div>
                         <div class="action-row"><button class="action-btn primary" type="submit">Log in</button></div>
-                        <p style="margin-top:12px;"><button type="button" id="show-forgot-password-button" class="text-link" style="background:none;border:0;padding:0;color:var(--primary, #a83b70);text-decoration:underline;cursor:pointer;font:inherit;">Forgot password?</button></p>
+                        <p style="margin-top:12px;"><button type="button" id="show-forgot-password-button"
+                                class="text-link"
+                                style="background:none;border:0;padding:0;color:var(--primary, #a83b70);text-decoration:underline;cursor:pointer;font:inherit;">Forgot
+                                password?</button></p>
                     </form>
                     <form id="register-form" hidden>
                         <h2>Create your account</h2>
+<<<<<<< HEAD
                         <div class="field"><label for="register-username">Username</label><input id="register-username" type="text" autocomplete="username" required placeholder="Choose a username"></div>
                         <div class="field" style="margin-top:14px;"><label for="register-password">Create password</label><input id="register-password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></div>
                         <div class="field" style="margin-top:14px;"><label for="register-email">Email address (optional)</label><input id="register-email" type="email" autocomplete="email" placeholder="Enter your email for password recovery"><p class="field-help" style="margin-top:6px;">Email is optional, but you'll need a registered email address to reset a forgotten password.</p></div>
                         <p class="field-help" style="margin-top:10px;">Use a unique password. Your account will be stored by the HerHealth backend.</p>
                         <div class="action-row"><button class="action-btn primary" type="submit">Create account</button></div>
+=======
+                        <div class="field"><label for="register-username">Username</label><input id="register-username"
+                                type="text" autocomplete="username" required placeholder="Choose a username"></div>
+                        <div class="field" style="margin-top:14px;"><label for="register-password">Create
+                                password</label><input id="register-password" type="password"
+                                autocomplete="new-password" minlength="8" required placeholder="At least 8 characters">
+                        </div>
+                        <div class="field" style="margin-top:14px;"><label for="register-email">Email address
+                                (optional)</label><input id="register-email" type="email" autocomplete="email"
+                                placeholder="Enter your email for password recovery">
+                            <p class="field-help" style="margin-top:6px;">Email is optional, but you'll need a
+                                registered email address to reset a forgotten password.</p>
+                        </div>
+                        <p class="field-help" style="margin-top:10px;">Use a unique password. HerHealth authentication
+                            and secure account storage will be connected to the backend before accounts are enabled.</p>
+                        <div class="action-row"><button class="action-btn primary" type="submit">Create account</button>
+                        </div>
+>>>>>>> 889abf9 (backend)
                     </form>
                     <form id="forgot-password-form" hidden>
                         <h2>Reset your password</h2>
-                        <p class="page-intro">Enter your username and the email address registered to your account. A verified recovery link or code will be sent when account recovery is connected.</p>
-                        <div class="field"><label for="recovery-username">Username</label><input id="recovery-username" type="text" autocomplete="username" required placeholder="Enter your username"></div>
-                        <div class="field" style="margin-top:14px;"><label for="recovery-email">Registered email address</label><input id="recovery-email" type="email" autocomplete="email" placeholder="Enter your registered email"></div>
-                        <div class="action-row"><button class="action-btn primary" type="submit">Continue</button><button class="action-btn" type="button" id="back-to-login-button">Back to login</button></div>
+                        <p class="page-intro">Enter your username and the email address registered to your account. A
+                            verified recovery link or code will be sent when account recovery is connected.</p>
+                        <div class="field"><label for="recovery-username">Username</label><input id="recovery-username"
+                                type="text" autocomplete="username" required placeholder="Enter your username"></div>
+                        <div class="field" style="margin-top:14px;"><label for="recovery-email">Registered email
+                                address</label><input id="recovery-email" type="email" autocomplete="email"
+                                placeholder="Enter your registered email"></div>
+                        <div class="action-row"><button class="action-btn primary"
+                                type="submit">Continue</button><button class="action-btn" type="button"
+                                id="back-to-login-button">Back to login</button></div>
                     </form>
+<<<<<<< HEAD
                     <p id="auth-status" class="field-help" role="status" aria-live="polite">Log in or create an account to save personal data. You can explore the app without an account.</p>
                     <div class="action-row"><button class="action-btn" type="button" id="auth-home-button">Back to Home</button></div>
+=======
+                    <p id="auth-status" class="field-help" role="status" aria-live="polite">Account access is not
+                        connected yet. You can continue exploring Home and Tips.</p>
+                    <div class="action-row"><button class="action-btn" type="button" id="auth-home-button">Back to
+                            Home</button></div>
+>>>>>>> 889abf9 (backend)
                 </div>
             </section>
 
@@ -1599,6 +1900,10 @@
         let calendarDate = new Date();
         let selectedCalendarDate = "";
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 889abf9 (backend)
         function loadData() {
             try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || emptyData(); }
             catch (error) { return emptyData(); }
@@ -1726,6 +2031,7 @@
             showStatus("auth-status", "Password recovery is not implemented in the current backend.");
         });
         document.getElementById("back-to-login-button").addEventListener("click", () => setAuthMode("login"));
+<<<<<<< HEAD
         async function finishAuthentication(result) {
             accessToken = result.access_token; currentUsername = result.username; isAuthenticated = true;
             sessionStorage.setItem(TOKEN_KEY, accessToken); sessionStorage.setItem(USER_KEY, currentUsername);
@@ -1747,6 +2053,96 @@
                 const result = await apiRequest("/auth/register", { method: "POST", body: JSON.stringify({ username: document.getElementById("register-username").value.trim(), password: document.getElementById("register-password").value, email: document.getElementById("register-email").value.trim() || null }) });
                 await finishAuthentication(result);
             } catch (error) { showStatus("auth-status", error.message); }
+=======
+        document.getElementById("login-form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const status = document.getElementById("auth-status");
+            const username = document.getElementById("login-username").value.trim();
+            const password = document.getElementById("login-password").value;
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.detail || "Login failed.");
+                }
+
+                sessionStorage.setItem("herhealth_token", result.access_token);
+
+                isAuthenticated = true;
+
+                // Save the account username in the profile
+                appData.profile.name = result.username || username;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+
+                // Update the profile form
+                fillProfileForm();
+
+                // Hide the login/create-account button after login
+                document.getElementById("open-auth-button").style.display = "none";
+
+                // Return to the homepage
+                showPage("home");
+
+                status.textContent = "Login successful! Your account is connected.";
+
+                status.textContent = "Login successful! Your account is connected.";
+            } catch (error) {
+                status.textContent = "Login error: " + error.message;
+            }
+        });
+
+        document.getElementById("register-form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const status = document.getElementById("auth-status");
+            const username = document.getElementById("register-username").value.trim();
+            const password = document.getElementById("register-password").value;
+            const email = document.getElementById("register-email").value.trim();
+
+            const account = { username, password };
+            if (email) {
+                account.email = email;
+            }
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/auth/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(account)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.detail || "Registration failed.");
+                }
+
+                status.textContent = "Account created successfully! Please log in.";
+                setAuthMode("login");
+            } catch (error) {
+                status.textContent = "Registration error: " + error.message;
+            }
+        });
+
+        document.getElementById("forgot-password-form").addEventListener("submit", event => {
+            event.preventDefault();
+            const email = document.getElementById("recovery-email").value.trim();
+            const status = document.getElementById("auth-status");
+            if (!email) {
+                status.textContent = "To reset your password, a registered email address is essential. If you did not add an email when creating your account, password recovery by email will not be available.";
+                document.getElementById("recovery-email").focus();
+                return;
+            }
+            status.textContent = "Password recovery is not active yet. Once connected to the secure FastAPI backend, HerHealth can verify your registered email and send a recovery link or code.";
+>>>>>>> 889abf9 (backend)
         });
         document.getElementById("forgot-password-form").addEventListener("submit", event => { event.preventDefault(); showStatus("auth-status", "Password recovery is not available yet. Please use your existing password to log in."); });
 
