@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HerHealth | Track. Understand. Take Charge.</title>
 
   <style>
@@ -245,38 +244,38 @@
       </div>
 
       <nav class="nav-menu" aria-label="Main navigation">
-        <a class="nav-link active" href="#home" data-page="home">
+        <a class="nav-link active" href="http://127.0.0.1:5500/frontend/index.html#home" data-page="home" aria-current="page">
           <span class="icon">⌂</span> Home
         </a>
-        <a class="nav-link" href="#profile" data-page="profile">
+        <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#profile" data-page="profile">
           <span class="icon">♡</span> Profile
         </a>
-        <a class="nav-link" href="#period-tracker" data-page="period-tracker">
+        <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#period-tracker" data-page="period-tracker">
           <span class="icon">▦</span> Period Tracker
         </a>
-        <a class="nav-link" href="#daily-symptoms" data-page="daily-symptoms">
+        <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#daily-symptoms" data-page="daily-symptoms">
           <span class="icon">✧</span> Daily Symptoms
         </a>
-        <a class="nav-link" href="#dashboard" data-page="dashboard">
+        <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#dashboard" data-page="dashboard">
           <span class="icon">♡</span> Health Dashboard
         </a>
-        <a class="nav-link" href="#consultation-report" data-page="consultation-report">
+        <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#consultation-report" data-page="consultation-report">
           <span class="icon">▤</span> Consultation Report
         </a>
-        <a class="nav-link" href="#resources" data-page="resources">
+        <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#resources" data-page="resources">
           <span class="icon">▱</span> Resources
         </a>
-        <a class="nav-link" href="#settings" data-page="settings">
+        <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#settings" data-page="settings">
           <span class="icon">⚙</span> Settings
         </a>
-        <a class="nav-link" href="#community" data-page="community">
+        <a class="nav-link" href="http://127.0.0.1:5500/frontend/index.html#community" data-page="community">
           <span class="icon">♧</span> Community
         </a>
       </nav>
 
       <div class="sidebar-footer">
-        ♡<br />
-        Your health matters.<br />
+        ♡<br>
+        Your health matters.<br>
         Always.
       </div>
     </aside>
@@ -288,21 +287,21 @@
       </header>
 
       <!-- STAGE 1 HOMEPAGE: content and structure preserved -->
-      <div id="home-view">
+      <div id="home-view" style="display: block;">
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-content">
             <p class="eyebrow">Welcome to HerHealth</p>
             <h1 id="hero-title">
-              Your health journey<br />
+              Your health journey<br>
               starts here <span aria-hidden="true">♥</span>
             </h1>
             <p class="tagline">Track. Understand. Take Charge.</p>
             <p class="hero-description">
-              HerHealth is a health awareness and tracking tool
+              Health awareness and tracking tool
               designed to help you understand your menstrual health,
               record symptoms, and explore reliable educational resources.
             </p>
-            <a class="primary-btn" href="#features" id="explore-button">
+            <a class="primary-btn" href="http://127.0.0.1:5500/frontend/index.html#features" id="explore-button">
               Explore HerHealth <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -312,22 +311,22 @@
         <section id="features" aria-labelledby="features-title">
           <h2 class="section-title" id="features-title">Explore Your Health</h2>
           <div class="features">
-            <article class="feature-card" data-open-page="period-tracker">
+            <article class="feature-card" data-open-page="period-tracker" tabindex="0" role="button">
               <div class="feature-icon" aria-hidden="true">🌷</div>
               <h3>Period Tracker</h3>
               <p>Keep track of your menstrual cycle and related changes.</p>
             </article>
-            <article class="feature-card" data-open-page="daily-symptoms">
+            <article class="feature-card" data-open-page="daily-symptoms" tabindex="0" role="button">
               <div class="feature-icon" aria-hidden="true">♡</div>
               <h3>Daily Symptoms</h3>
               <p>Record symptoms and notice patterns over time.</p>
             </article>
-            <article class="feature-card" data-open-page="dashboard">
+            <article class="feature-card" data-open-page="dashboard" tabindex="0" role="button">
               <div class="feature-icon" aria-hidden="true">✿</div>
               <h3>Health Dashboard</h3>
               <p>Explore your health information in one place.</p>
             </article>
-            <article class="feature-card" data-open-page="resources">
+            <article class="feature-card" data-open-page="resources" tabindex="0" role="button">
               <div class="feature-icon" aria-hidden="true">📖</div>
               <h3>Health Resources</h3>
               <p>Learn about menstrual health through educational content.</p>
@@ -385,10 +384,10 @@
           <h2>Personal Information</h2>
           <form id="profile-form">
             <div class="form-grid">
-              <div class="field"><label for="profile-name">Name</label><input id="profile-name" name="name" type="text" placeholder="Enter your name" /></div>
-              <div class="field"><label for="profile-age">Age</label><input id="profile-age" name="age" type="number" min="1" max="120" placeholder="Enter age" /></div>
-              <div class="field"><label for="profile-email">Email (optional)</label><input id="profile-email" name="email" type="email" placeholder="Enter email" /></div>
-              <div class="field"><label for="profile-location">Location</label><input id="profile-location" name="location" type="text" placeholder="Enter city/region" /></div>
+              <div class="field"><label for="profile-name">Name</label><input id="profile-name" name="name" type="text" placeholder="Enter your name"></div>
+              <div class="field"><label for="profile-age">Age</label><input id="profile-age" name="age" type="number" min="1" max="120" placeholder="Enter age"></div>
+              <div class="field"><label for="profile-email">Email (optional)</label><input id="profile-email" name="email" type="email" placeholder="Enter email"></div>
+              <div class="field"><label for="profile-location">Location</label><input id="profile-location" name="location" type="text" placeholder="Enter city/region"></div>
             </div>
             <div class="action-row"><button class="action-btn primary" type="submit">Save Profile</button><span class="muted" id="profile-status" role="status"></span></div>
           </form>
@@ -411,21 +410,17 @@
 
     <div class="field">
       <label for="last-period">Last Period Start Date (optional)</label>
-      <input id="last-period" name="last-period" type="date" />
+      <input id="last-period" name="last-period" type="date">
     </div>
 
     <div class="field">
       <label for="cycle-length">Average Cycle Length (days)</label>
-      <input id="cycle-length" name="cycle-length"
-             type="number" min="1" max="90"
-             placeholder="e.g. 28" />
+      <input id="cycle-length" name="cycle-length" type="number" min="1" max="90" placeholder="e.g. 28">
     </div>
 
     <div class="field">
       <label for="period-length">Average Period Duration (days)</label>
-      <input id="period-length" name="period-length"
-             type="number" min="1" max="15"
-             placeholder="e.g. 5" />
+      <input id="period-length" name="period-length" type="number" min="1" max="15" placeholder="e.g. 5">
     </div>
   </div>
 </div>
@@ -437,28 +432,28 @@
 
   <div class="field">
     <label>
-      <input type="checkbox" name="period-reminders" />
+      <input type="checkbox" name="period-reminders">
       Period reminders
     </label>
   </div>
 
   <div class="field">
     <label>
-      <input type="checkbox" name="symptom-reminders" />
+      <input type="checkbox" name="symptom-reminders">
       Symptom logging reminders
     </label>
   </div>
 
   <div class="field">
     <label>
-      <input type="checkbox" name="health-notifications" />
+      <input type="checkbox" name="health-notifications">
       Health education notifications
     </label>
   </div>
 
   <div class="field">
     <label for="reminder-time">Preferred Reminder Time</label>
-    <input id="reminder-time" name="reminder-time" type="time" />
+    <input id="reminder-time" name="reminder-time" type="time">
   </div>
 </div>
 
@@ -470,38 +465,35 @@
   <div class="form-grid">
     <div class="field">
       <label>
-        <input type="checkbox" name="health-interests"
-               value="menstrual-health" />
+        <input type="checkbox" name="health-interests" value="menstrual-health">
         Menstrual Health
       </label>
     </div>
 
     <div class="field">
       <label>
-        <input type="checkbox" name="health-interests" value="pcos" />
+        <input type="checkbox" name="health-interests" value="pcos">
         PCOS &amp; Hormonal Health
       </label>
     </div>
 
     <div class="field">
       <label>
-        <input type="checkbox" name="health-interests"
-               value="pregnancy" />
+        <input type="checkbox" name="health-interests" value="pregnancy">
         Pregnancy &amp; Fertility
       </label>
     </div>
 
     <div class="field">
       <label>
-        <input type="checkbox" name="health-interests" value="menopause" />
+        <input type="checkbox" name="health-interests" value="menopause">
         Menopause
       </label>
     </div>
 
     <div class="field">
       <label>
-        <input type="checkbox" name="health-interests"
-               value="general-wellness" />
+        <input type="checkbox" name="health-interests" value="general-wellness">
         General Women's Wellness
       </label>
     </div>
@@ -517,7 +509,7 @@
 
   <div class="field">
     <label>
-      <input type="checkbox" name="health-data-consent" />
+      <input type="checkbox" name="health-data-consent">
       I consent to saving the health information I choose to provide.
     </label>
   </div>
@@ -549,21 +541,21 @@
         <div class="page-section">
           <div class="calendar-toolbar">
             <button class="action-btn" type="button" id="calendar-prev" aria-label="Previous month">← Previous</button>
-            <h2 id="calendar-month-label">Calendar</h2>
+            <h2 id="calendar-month-label">October 2026</h2>
             <button class="action-btn" type="button" id="calendar-next" aria-label="Next month">Next →</button>
           </div>
-          <div class="calendar-grid" id="period-calendar" aria-label="Period calendar"></div>
+          <div class="calendar-grid" id="period-calendar" aria-label="Period calendar"><div class="calendar-weekday">Sun</div><div class="calendar-weekday">Mon</div><div class="calendar-weekday">Tue</div><div class="calendar-weekday">Wed</div><div class="calendar-weekday">Thu</div><div class="calendar-weekday">Fri</div><div class="calendar-weekday">Sat</div><button type="button" class="calendar-day muted-day" data-date="2026-09-27" aria-label="27 Sept 2026"><span>27</span></button><button type="button" class="calendar-day muted-day" data-date="2026-09-28" aria-label="28 Sept 2026"><span>28</span></button><button type="button" class="calendar-day muted-day" data-date="2026-09-29" aria-label="29 Sept 2026"><span>29</span></button><button type="button" class="calendar-day muted-day" data-date="2026-09-30" aria-label="30 Sept 2026"><span>30</span></button><button type="button" class="calendar-day" data-date="2026-10-01" aria-label="1 Oct 2026"><span>1</span></button><button type="button" class="calendar-day" data-date="2026-10-02" aria-label="2 Oct 2026"><span>2</span></button><button type="button" class="calendar-day" data-date="2026-10-03" aria-label="3 Oct 2026"><span>3</span></button><button type="button" class="calendar-day" data-date="2026-10-04" aria-label="4 Oct 2026"><span>4</span></button><button type="button" class="calendar-day" data-date="2026-10-05" aria-label="5 Oct 2026"><span>5</span></button><button type="button" class="calendar-day" data-date="2026-10-06" aria-label="6 Oct 2026"><span>6</span></button><button type="button" class="calendar-day" data-date="2026-10-07" aria-label="7 Oct 2026"><span>7</span></button><button type="button" class="calendar-day" data-date="2026-10-08" aria-label="8 Oct 2026"><span>8</span></button><button type="button" class="calendar-day" data-date="2026-10-09" aria-label="9 Oct 2026"><span>9</span></button><button type="button" class="calendar-day" data-date="2026-10-10" aria-label="10 Oct 2026"><span>10</span></button><button type="button" class="calendar-day" data-date="2026-10-11" aria-label="11 Oct 2026"><span>11</span></button><button type="button" class="calendar-day" data-date="2026-10-12" aria-label="12 Oct 2026"><span>12</span></button><button type="button" class="calendar-day" data-date="2026-10-13" aria-label="13 Oct 2026"><span>13</span></button><button type="button" class="calendar-day period-day" data-date="2026-10-14" aria-label="14 Oct 2026, recorded period"><span>14</span><span class="day-dot">♥</span></button><button type="button" class="calendar-day period-day" data-date="2026-10-15" aria-label="15 Oct 2026, recorded period"><span>15</span><span class="day-dot">♥</span></button><button type="button" class="calendar-day period-day" data-date="2026-10-16" aria-label="16 Oct 2026, recorded period"><span>16</span><span class="day-dot">♥</span></button><button type="button" class="calendar-day period-day" data-date="2026-10-17" aria-label="17 Oct 2026, recorded period"><span>17</span><span class="day-dot">♥</span></button><button type="button" class="calendar-day period-day" data-date="2026-10-18" aria-label="18 Oct 2026, recorded period"><span>18</span><span class="day-dot">♥</span></button><button type="button" class="calendar-day period-day" data-date="2026-10-19" aria-label="19 Oct 2026, recorded period"><span>19</span><span class="day-dot">♥</span></button><button type="button" class="calendar-day" data-date="2026-10-20" aria-label="20 Oct 2026"><span>20</span></button><button type="button" class="calendar-day" data-date="2026-10-21" aria-label="21 Oct 2026"><span>21</span></button><button type="button" class="calendar-day" data-date="2026-10-22" aria-label="22 Oct 2026"><span>22</span></button><button type="button" class="calendar-day" data-date="2026-10-23" aria-label="23 Oct 2026"><span>23</span></button><button type="button" class="calendar-day" data-date="2026-10-24" aria-label="24 Oct 2026"><span>24</span></button><button type="button" class="calendar-day" data-date="2026-10-25" aria-label="25 Oct 2026"><span>25</span></button><button type="button" class="calendar-day" data-date="2026-10-26" aria-label="26 Oct 2026"><span>26</span></button><button type="button" class="calendar-day" data-date="2026-10-27" aria-label="27 Oct 2026"><span>27</span></button><button type="button" class="calendar-day" data-date="2026-10-28" aria-label="28 Oct 2026"><span>28</span></button><button type="button" class="calendar-day" data-date="2026-10-29" aria-label="29 Oct 2026"><span>29</span></button><button type="button" class="calendar-day" data-date="2026-10-30" aria-label="30 Oct 2026"><span>30</span></button><button type="button" class="calendar-day" data-date="2026-10-31" aria-label="31 Oct 2026"><span>31</span></button><button type="button" class="calendar-day muted-day" data-date="2026-11-01" aria-label="1 Nov 2026"><span>1</span></button><button type="button" class="calendar-day muted-day" data-date="2026-11-02" aria-label="2 Nov 2026"><span>2</span></button><button type="button" class="calendar-day muted-day" data-date="2026-11-03" aria-label="3 Nov 2026"><span>3</span></button><button type="button" class="calendar-day muted-day" data-date="2026-11-04" aria-label="4 Nov 2026"><span>4</span></button><button type="button" class="calendar-day muted-day" data-date="2026-11-05" aria-label="5 Nov 2026"><span>5</span></button><button type="button" class="calendar-day muted-day" data-date="2026-11-06" aria-label="6 Nov 2026"><span>6</span></button><button type="button" class="calendar-day muted-day" data-date="2026-11-07" aria-label="7 Nov 2026"><span>7</span></button></div>
           <p class="field-help" style="margin-top:10px">Pink-highlighted dates indicate dates included in a recorded period. Select any date to use it as the start date in the form below.</p>
         </div>
         <div class="page-section">
           <h2 id="period-form-title">Record a Period</h2>
           <form id="period-form">
-            <input type="hidden" id="period-record-id" />
+            <input type="hidden" id="period-record-id">
             <div class="form-grid">
-              <div class="field"><label for="period-start">Period start date *</label><input id="period-start" type="date" required /></div>
-              <div class="field"><label for="period-end">Period end date (optional)</label><input id="period-end" type="date" /></div>
-              <div class="field"><label for="period-flow">Flow description *</label><select id="period-flow" required><option value="">Select flow</option><option>High</option><option>Normal</option><option>Low</option></select></div>
-              <div class="field"><label for="period-pain">Pain intensity *</label><select id="period-pain" required><option value="">Select pain intensity</option><option>High</option><option>Normal</option><option>Low</option></select></div>
+              <div class="field"><label for="period-start">Period start date *</label><input id="period-start" type="date" required=""></div>
+              <div class="field"><label for="period-end">Period end date (optional)</label><input id="period-end" type="date"></div>
+              <div class="field"><label for="period-flow">Flow description *</label><select id="period-flow" required=""><option value="">Select flow</option><option>High</option><option>Normal</option><option>Low</option></select></div>
+              <div class="field"><label for="period-pain">Pain intensity *</label><select id="period-pain" required=""><option value="">Select pain intensity</option><option>High</option><option>Normal</option><option>Low</option></select></div>
               <div class="field full"><label for="period-note">Note (optional)</label><textarea id="period-note" placeholder="Add any notes about this period"></textarea></div>
             </div>
             <div class="action-row">
@@ -586,20 +578,20 @@
         <div class="page-section">
           <h2 id="symptom-form-title">Record a Symptom</h2>
           <form id="symptom-form">
-            <input type="hidden" id="symptom-record-id" />
+            <input type="hidden" id="symptom-record-id">
             <div class="form-grid">
-              <div class="field"><label for="symptom-date">Date *</label><input id="symptom-date" type="date" required /></div>
+              <div class="field"><label for="symptom-date">Date *</label><input id="symptom-date" type="date" required=""></div>
               <div class="field"><label for="symptom-name">Symptom name *</label>
-                <select id="symptom-name" required>
+                <select id="symptom-name" required="">
                   <option value="">Select a symptom</option>
                   <option>Cramps</option><option>Pelvic pain</option><option>Lower back pain</option>
                   <option>Fatigue</option><option>Bloating</option><option>Headache</option>
                   <option>Nausea</option><option>Bowel or urinary discomfort</option><option>Other</option>
                 </select>
               </div>
-              <div class="field full"><label for="symptom-description">Short description *</label><textarea id="symptom-description" required placeholder="Describe the symptom briefly"></textarea></div>
-              <div class="field"><label for="symptom-pain">Pain intensity *</label><select id="symptom-pain" required><option value="">Select intensity</option><option>High</option><option>Normal</option><option>Low</option><option>Not applicable</option></select></div>
-              <div class="field"><label for="symptom-impact">Impact on daily activities *</label><select id="symptom-impact" required><option value="">Select impact</option><option>None</option><option>Mild</option><option>Moderate</option><option>Severe</option></select></div>
+              <div class="field full"><label for="symptom-description">Short description *</label><textarea id="symptom-description" required="" placeholder="Describe the symptom briefly"></textarea></div>
+              <div class="field"><label for="symptom-pain">Pain intensity *</label><select id="symptom-pain" required=""><option value="">Select intensity</option><option>High</option><option>Normal</option><option>Low</option><option>Not applicable</option></select></div>
+              <div class="field"><label for="symptom-impact">Impact on daily activities *</label><select id="symptom-impact" required=""><option value="">Select impact</option><option>None</option><option>Mild</option><option>Moderate</option><option>Severe</option></select></div>
               <div class="field full"><label for="symptom-notes">Notes (optional)</label><textarea id="symptom-notes" placeholder="Add any additional notes"></textarea></div>
             </div>
             <div class="action-row">
@@ -682,16 +674,16 @@
           <h2>Share an Opinion or Idea</h2>
           <form id="community-form">
             <div class="form-grid">
-              <div class="field"><label for="community-name">Display name (optional)</label><input id="community-name" type="text" placeholder="Choose a display name" /></div>
-              <div class="field"><label for="community-topic">Topic *</label><input id="community-topic" type="text" required placeholder="Add a short topic" /></div>
-              <div class="field full"><label for="community-message">Your opinion or idea *</label><textarea id="community-message" required placeholder="Share respectfully"></textarea></div>
+              <div class="field"><label for="community-name">Display name (optional)</label><input id="community-name" type="text" placeholder="Choose a display name"></div>
+              <div class="field"><label for="community-topic">Topic *</label><input id="community-topic" type="text" required="" placeholder="Add a short topic"></div>
+              <div class="field full"><label for="community-message">Your opinion or idea *</label><textarea id="community-message" required="" placeholder="Share respectfully"></textarea></div>
             </div>
             <div class="action-row"><button class="action-btn primary" type="submit">Publish Post</button><span class="muted" id="community-status" role="status"></span></div>
           </form>
         </div>
         <div class="page-section">
           <h2>Community Posts</h2>
-          <div id="community-posts"></div>
+          <div id="community-posts"><div class="empty-state">No community posts yet. Share an opinion or idea to start this local demo.</div></div>
         </div>
       </section>
     </main>
@@ -1222,5 +1214,44 @@ Pain intensity: ${escapeHTML(item.pain)} · Daily-life impact: ${escapeHTML(item
     fillProfileForm();
     renderAll();
   </script>
-</body>
-</html>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
+

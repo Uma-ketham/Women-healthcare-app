@@ -1,0 +1,140 @@
+<!-- PERIOD TRACKER -->
+<section class="stage2-page" id="period-tracker-page" data-page-content="period-tracker">
+<h1 class="page-heading">Period Tracker</h1>
+<p class="page-intro">Select a date on the calendar to record period details. End dates can be entered later.</p>
+<div class="page-section">
+    <div class="calendar-toolbar">
+    <button class="action-btn" type="button" id="calendar-prev" aria-label="Previous month">← Previous</button>
+    <h2 id="calendar-month-label">Calendar</h2>
+    <button class="action-btn" type="button" id="calendar-next" aria-label="Next month">Next →</button>
+    </div>
+    <div class="calendar-grid" id="period-calendar" aria-label="Period calendar"></div>
+    <p class="field-help" style="margin-top:10px">Pink-highlighted dates indicate dates included in a recorded period. Select any date to use it as the start date in the form below.</p>
+</div>
+<div class="page-section">
+    <h2 id="period-form-title">Record a Period</h2>
+    <form id="period-form">
+    <input type="hidden" id="period-record-id" />
+    <div class="form-grid">
+        <div class="field"><label for="period-start">Period start date *</label><input id="period-start" type="date" required /></div>
+        <div class="field"><label for="period-end">Period end date (optional)</label><input id="period-end" type="date" /></div>
+        <div class="field"><label for="period-flow">Flow description *</label><select id="period-flow" required><option value="">Select flow</option><option>High</option><option>Normal</option><option>Low</option></select></div>
+        <div class="field"><label for="period-pain">Pain intensity *</label><select id="period-pain" required><option value="">Select pain intensity</option><option>High</option><option>Normal</option><option>Low</option></select></div>
+        <div class="field full"><label for="period-note">Note (optional)</label><textarea id="period-note" placeholder="Add any notes about this period"></textarea></div>
+    </div>
+    <div class="action-row">
+        <button class="action-btn primary" type="submit" id="period-save-button">Save Period</button>
+        <button class="action-btn" type="button" id="period-clear-button">Clear Form</button>
+        <span class="muted" id="period-status" role="status"></span>
+    </div>
+    </form>
+</div>
+<div class="page-section">
+    <h2>Recorded Periods</h2>
+    <div id="period-records" class="record-list"></div>
+</div>
+
+
+<!-- PERIOD INSIGHTS -->
+<div class="page-section" id="period-insights"
+     style="background:#fff7fa; border:1px solid #f2d5e1; border-radius:18px; padding:24px; margin-top:20px;">
+
+    <h2 style="color:#b83267; margin-bottom:20px;">Period Insights</h2>
+
+    <div class="form-grid">
+        <div class="field"
+             style="background:#ffffff; border:1px solid #f3d4e1; border-radius:14px; padding:18px;">
+            <label>Average Cycle Length</label>
+            <h3 id="average-cycle-length"
+                style="color:#c7477b; font-size:24px; margin-top:10px;">—</h3>
+        </div>
+
+        <div class="field"
+             style="background:#ffffff; border:1px solid #f3d4e1; border-radius:14px; padding:18px;">
+            <label>Period Duration</label>
+            <h3 id="period-duration"
+                style="color:#c7477b; font-size:24px; margin-top:10px;">—</h3>
+        </div>
+
+        <div class="field"
+             style="background:#ffffff; border:1px solid #f3d4e1; border-radius:14px; padding:18px;">
+            <label>Next Estimated Period</label>
+            <h3 id="next-estimated-period"
+                style="color:#c7477b; font-size:20px; margin-top:10px;">—</h3>
+        </div>
+    </div>
+
+    <p class="field-help" id="period-insights-message" role="status"
+       style="background:#fdeaf1; color:#8f3157; border-radius:10px; padding:12px 14px; margin-top:18px;">
+        Record your period dates to view your insights.
+    </p>
+
+    <p class="field-help"
+       style="color:#876675; font-size:13px; margin-top:12px;">
+        Estimates are based on recorded dates. Actual cycle dates may vary.
+    </p>
+</div>
+
+<!-- PERIOD SYMPTOM NOTES -->
+<div class="page-section" id="period-notes"
+     style="background:#fff7fa; border:1px solid #f2d5e1; border-radius:18px; padding:24px; margin-top:20px;">
+
+    <h2 style="color:#b83267; margin-bottom:12px;">Notes & Symptoms</h2>
+
+    <p class="page-intro" style="color:#876675; margin-bottom:22px;">
+        Record symptoms or notes about your period to help you track
+        your experiences over time.
+    </p>
+
+    <div class="field"
+         style="background:#ffffff; border:1px solid #f3d4e1; border-radius:14px; padding:18px; margin-bottom:20px;">
+
+        <label for="period-symptoms"
+               style="color:#a83260; font-weight:600; display:block; margin-bottom:14px;">
+            Symptoms
+        </label>
+
+        <div class="form-grid">
+            <label style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
+                <input type="checkbox" name="period-symptom" value="Cramps">
+                Cramps
+            </label>
+
+            <label style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
+                <input type="checkbox" name="period-symptom" value="Headaches">
+                Headaches
+            </label>
+
+            <label style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
+                <input type="checkbox" name="period-symptom" value="Mood changes">
+                Mood changes
+            </label>
+
+            <label style="background:#fff0f5; border:1px solid #f2d5e1; border-radius:10px; padding:12px; color:#74364f;">
+                <input type="checkbox" name="period-symptom" value="Fatigue">
+                Fatigue
+            </label>
+        </div>
+    </div>
+
+    <div class="field"
+         style="background:#ffffff; border:1px solid #f3d4e1; border-radius:14px; padding:18px; margin-bottom:18px;">
+
+        <label for="period-symptom-note"
+               style="color:#a83260; font-weight:600; display:block; margin-bottom:10px;">
+            Additional Notes
+        </label>
+
+        <textarea
+            id="period-symptom-note"
+            placeholder="Describe any symptoms or other experiences..."
+            style="width:100%; box-sizing:border-box; border:1px solid #e8b9cc; border-radius:10px; padding:12px; background:#fffafd; color:#573346; min-height:110px; outline-color:#c7477b;"
+        ></textarea>
+    </div>
+
+    <p class="field-help"
+       style="background:#fdeaf1; color:#8f3157; border-radius:10px; padding:12px 14px; margin-top:12px;">
+        Symptom notes are optional. You can leave them blank if you
+        don't want to record anything.
+    </p>
+</div>
